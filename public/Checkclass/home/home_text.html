@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>CheckClass - Home</title>
+  <link rel="stylesheet" href="home_style.css">
+</head>
+<body>
+  <div class="container">
+    <!-- Sidebar -->
+    <div class="sidebar">
+      <button>Dashboard</button>
+      <button>Conectar</button>
+      <button>Turmas</button>
+      <button>Configurações</button>
+      <button>Ajuda</button>
+    </div>
+
+    <!-- Conteúdo Principal -->
+    <div class="content">
+      <header>
+        <h1>Olá, Bem-vindo!</h1>
+        <div class="profile-placeholder">
+          <span>Foto</span>
+        </div>
+      </header>
+      <div class="turmas" id="turmas">
+        <!-- Turmas serão adicionadas aqui -->
+      </div>
+      <div class="ADD_TURMA" onclick="novaTurma()">
+        <span>+</span>
+      </div>
+    </div>
+  </div>
+  <script src="home_script.js"></script>
+</body>
+</html>

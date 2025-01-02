@@ -1,0 +1,12 @@
+{
+    "name": "server_nodejs",
+    "version": "1.0.0",
+    "description": "Meu servidor Node.js",
+    "main": "aux.js",
+    "scripts": {
+      "start": "node aux.js"
+    },
+    "dependencies": {
+      "express": "^4.18.2"
+    }
+  }
