@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Detalhes da Turma</title>
+  <link rel="stylesheet" href="detalhes_turma.css">
+</head>
+<body>
+  <div class="container">
+    <h1 id="nomeTurma">Turma: </h1>
+    <p>Aqui você pode adicionar informações adicionais ou funcionalidades específicas da turma.</p>
+  </div>
+
+  <script>
+    // Recupera o nome da turma do localStorage
+    const nomeTurma = localStorage.getItem("turmaSelecionada");
+
+    // Atualiza o título da página
+    if (nomeTurma) {
+      document.getElementById("nomeTurma").textContent = `Turma: ${nomeTurma}`;
+    } else {
+      document.getElementById("nomeTurma").textContent = "Nenhuma turma selecionada.";
+    }
+  </script>
+</body>
+</html>

@@ -10,11 +10,11 @@
   <div class="container">
     <!-- Sidebar -->
     <div class="sidebar">
-      <button>Dashboard</button>
+      <button>Home</button>
       <button>Conectar</button>
-      <button>Turmas</button>
       <button>Configurações</button>
       <button>Ajuda</button>
+      <button class="logout">Logout</button>
     </div>
 
     <!-- Conteúdo Principal -->
@@ -28,8 +28,29 @@
       <div class="turmas" id="turmas">
         <!-- Turmas serão adicionadas aqui -->
       </div>
-      <div class="ADD_TURMA" onclick="novaTurma()">
+      <div class="ADD_TURMA">
         <span>+</span>
+      </div>
+      <div id="modalTurma" class="modal hidden">
+        <div class="modal-content">
+          <h2>Adicionar Nova Turma</h2>
+          <form id="formNovaTurma">
+            <label for="nomeTurma">Nome da Turma:</label>
+            <input type="text" id="nomeTurma" name="nomeTurma" required>
+            
+            <label for="ataAlunos">Carregar ata de alunos (.csv):</label>
+            <input type="file" id="ataAlunos" accept=".csv">
+            <!-- Pré-visualização dos alunos -->
+            <div id="alunosPreview">
+              <h3>Alunos Carregados:</h3>
+              <ul id="listaAlunos"></ul>
+            </div>
+            <div class="modal-buttons">
+              <button type="submit">Salvar</button>
+              <button type="button" onclick="fecharModal()">Cancelar</button>
+            </div>
+          </form>
+        </div>
       </div>
     </div>
   </div>
