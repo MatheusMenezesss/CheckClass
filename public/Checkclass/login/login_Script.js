@@ -1,4 +1,6 @@
-document.querySelector("form").addEventListener("submit", async (e) => {
+//const { json } = require("body-parser");
+
+document.getElementById("loginForm").addEventListener("submit", async (e) => {
     e.preventDefault();
 
     const email = document.querySelector("input[type=email]").value;
@@ -13,8 +15,15 @@ document.querySelector("form").addEventListener("submit", async (e) => {
 
         if (response.ok) {
             // Login bem-sucedido
+            const data = await response.json();
+
             alert("Login bem-sucedido!");
-            window.location.href = "home/home_text.html"; // Redirecionar para a página inicial
+
+            //salvar usuário no local storage para manter a sessão
+            localStorage.setItem("user", JSON.stringify(data.user));
+
+            //indo para o home:
+            window.location.href = "../home/home_text.html"; // Redirecionar para a página inicial
         } else {
             const message = await response.text(); // Ler mensagem de erro do backend
             alert(message);
@@ -33,6 +42,7 @@ document.addEventListener("DOMContentLoaded", () => {
     const showLoginLink = document.getElementById("showLogin");
 
     showRegisterLink.addEventListener("click", (e) => {
+        console.log("clicando no register");
         e.preventDefault();
         loginForm.style.display = "none";
         registerForm.style.display = "block";

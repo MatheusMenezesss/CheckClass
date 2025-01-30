@@ -1,5 +1,5 @@
 // Função para adicionar uma nova turma
-function novaTurma() {
+async function novaTurma() {
   const nomeTurma = prompt("Digite o nome da nova turma:");
 
   if (!nomeTurma) {
@@ -7,20 +7,47 @@ function novaTurma() {
     return;
   }
 
-  const novaDiv = document.createElement("div");
-  novaDiv.className = "turma-card";
-  novaDiv.dataset.nome = nomeTurma; // Adiciona o nome como atributo
-  novaDiv.innerHTML = `
-    <h2>${nomeTurma}</h2>
-    <p>Indicador 1</p>
-    <p>Indicador 2</p>
-  `;
+  const user = JSON.parse(localStorage.getItem("user"));
 
-  // Adiciona evento de clique no card
-  novaDiv.addEventListener("click", () => abrirAbaTurma(nomeTurma));
+  if(!user || !user.id){
+    alert("Erro: Nenhum professor identificado! Faça login novamente.");
+    window.location.href = "../login/login_text.html";
+    return;
+  }
 
-  const container = document.getElementById("turmas");
-  container.appendChild(novaDiv);
+  //enviar dados ao backend
+
+  try {
+    const response = await fetch("http://localhost:3000/turmas", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        nome: nomeTurma,
+        professor_id: user.id, // Associa ao professor logado
+      }),
+    });
+
+    if (!response.ok) {
+      throw new Error("Erro ao criar turma!");
+    }
+
+    const novaTurma = await response.json();
+
+    // Criar visualmente a turma na interface
+    const novaDiv = document.createElement("div");
+    novaDiv.className = "turma-card";
+    novaDiv.dataset.nome = nomeTurma;
+    novaDiv.innerHTML = `<h2>${nomeTurma}</h2><p>Turma criada com sucesso!</p>`;
+
+    novaDiv.addEventListener("click", () => abrirAbaTurma(nomeTurma));
+
+    document.getElementById("turmas").appendChild(novaDiv);
+  } catch (error) {
+    console.error("Erro ao criar turma:", error);
+    alert("Não foi possível criar a turma.");
+  }
 }
 
 // Função para abrir a aba com detalhes da turma
@@ -29,7 +56,7 @@ function abrirAbaTurma(nomeTurma) {
   localStorage.setItem("turmaSelecionada", nomeTurma);
 
   // Abrir nova aba ou página
-  window.open("detalhes_turma.html", "_blank");
+  window.open("../turmas/turmas_text.html", "_blank");
 }
 
 // Função para abrir o modal
@@ -72,42 +99,66 @@ document.getElementById("ataAlunos").addEventListener("change", (event) => {
     });
   };
 
-  reader.readAsText(file);
+  reader.readAsText(file); 
 });
 
 // Salvar nova turma
-document.getElementById("formNovaTurma").addEventListener("submit", (event) => {
+document.getElementById("formNovaTurma").addEventListener("submit", async (event) => {
   event.preventDefault();
 
+  const user = JSON.parse(localStorage.getItem("user")); // Obtém o usuário logado
+  if (!user || !user.id) {
+    alert("Erro: usuário não autenticado.");
+    return;
+  }
+
   const nomeTurma = document.getElementById("nomeTurma").value;
-  const alunos = Array.from(document.getElementById("listaAlunos").children).map(
-    (li) => li.textContent
-  );
+  const disciplinaId = document.getElementById("disciplinaId").value; // Pega o ID da disciplina do formulário
 
-  if (!nomeTurma) {
-    alert("O nome da turma não pode estar vazio!");
+  if (!nomeTurma || !disciplinaId) {
+    alert("Todos os campos são obrigatórios!");
     return;
   }
 
-  if (alunos.length === 0) {
-    alert("Nenhum aluno foi carregado na turma!");
-    return;
+  const turmaData = {
+    nome: nomeTurma,
+    disciplina_id: disciplinaId,
+    professor_id: user.id, // Pega o ID do professor logado
+  };
+
+  try {
+    const response = await fetch("/turmas", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify(turmaData),
+    });
+
+    if (!response.ok) {
+      throw new Error(await response.text());
+    }
+
+    alert("Turma criada com sucesso!");
+    location.reload(); // Recarrega a página para atualizar a lista
+  } catch (error) {
+    console.error("Erro ao criar turma:", error);
+    alert("Erro ao criar a turma.");
   }
-
-  const novaDiv = document.createElement("div");
-  novaDiv.className = "turma-card";
-  novaDiv.dataset.nome = nomeTurma; // Adiciona o nome como atributo
-  novaDiv.innerHTML = `
-    <h2>${nomeTurma}</h2>
-    <p>Total de Alunos: ${alunos.length}</p>
-  `;
-
-  novaDiv.addEventListener("click", () => abrirAbaTurma(nomeTurma));
-
-  const container = document.getElementById("turmas");
-  container.appendChild(novaDiv);
-
-  fecharModal();
 });
 
 document.querySelector(".ADD_TURMA").addEventListener("click", abrirModal);
+
+document.addEventListener("DOMContentLoaded", () =>{
+  const user = JSON.parse(localStorage.getItem("user"));
+
+  if(!user){
+    window.location.href = "../login/login_text.html";
+    return;
+  }
+
+  document.getElementById("nomeUsuario").textContent = user.nome;
+
+  document.getElementById("logout").addEventListener("click", () => {
+    localStorage.removeItem("user");
+    window.location.href = "../login/login_text.html";
+  });
+});

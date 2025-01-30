@@ -1,10 +1,99 @@
-*{
-    background-color: rgb(13, 13, 32);
-    color: aliceblue;
-    border: 10px;
-
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #131433;
 }
 
-.container{
-    background-color: azure;
+/* Navbar */
+.container {
+    background: rgba(52, 52, 68, 0.596);
+    color: white;
+    padding: 10px;
+    border-radius: 15px;
+    border: 5px 5px 5px 5px none;
+}
+
+
+.container ul {
+    list-style: none;
+    display: flex;
+    gap: 20px;
+    padding: 0;
+}
+
+.container ul li {
+    display: inline;
+}
+
+/* Layout principal */
+.content {
+    display: flex;
+    justify-content: space-between;
+    padding: 20px;
+}
+
+/* Informações da turma */
+.info-turma {
+    background: rgba(216, 216, 216, 0.781);
+    padding: 40px;
+    width: 30%;
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+    border-radius: 5px;
+}
+
+/* Ata da turma */
+.ata-turma {
+    background: rgba(216, 216, 216, 0.781);
+    padding: 20px;
+    width: 65%;
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+    border-radius: 5px;
+}
+
+/* Tabela */
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 10px;
+}
+
+table, th, td {
+    border: 1px solid #ddd;
+}
+
+th, td {
+    padding: 8px;
+    text-align: left;
+}
+
+.botoes-acao{
+    width: 20%;
+    background-color: #343444b6;
+    padding: 30px 20px;
+    border-radius: 0 20px 20px 0;
+    box-shadow: 2px 0 10px rgba(0, 0, 0, 0.3);
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.botoes-turma button{
+    background-color: rgba(115, 101, 153, 0.404);
+    color: #FFFFFF;
+    border: none;
+    border-radius: 10px;
+    padding: 15px 20px;
+    font-size: 16px;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    text-align: left;
+    
+}
+
+.botoes-turma button:hover {
+    background-color: #FF5252;
+    transform: translateX(5px);
+    box-shadow: 2px 2px 10px rgba(255, 105, 105, 0.5);
 }
