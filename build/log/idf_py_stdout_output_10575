@@ -1,0 +1,341 @@
+[1/903] Generating project_elf_src_esp32.c
+[2/903] Generating memory.ld linker script...
+[3/903] Building C object esp-idf/esp_http_client/CMakeFiles/__idf_esp_http_client.dir/lib/http_utils.c.obj
+[4/903] Building C object esp-idf/esp_http_client/CMakeFiles/__idf_esp_http_client.dir/lib/http_header.c.obj
+[5/903] Generating ../../partition_table/partition-table.bin
+Partition table binary generated. Contents:
+*******************************************************************************
+# ESP-IDF Partition Table
+# Name, Type, SubType, Offset, Size, Flags
+nvs,data,nvs,0x9000,24K,
+phy_init,data,phy,0xf000,4K,
+factory,app,factory,0x10000,1M,
+*******************************************************************************
+[6/903] Building C object esp-idf/esp_http_server/CMakeFiles/__idf_esp_http_server.dir/src/httpd_ws.c.obj
+In file included from /home/jj/esp-idf/components/esp_http_server/src/esp_httpd_priv.h:14,
+                 from /home/jj/esp-idf/components/esp_http_server/src/httpd_ws.c:18:
+/home/jj/esp-idf/components/lwip/port/include/netinet/in.h:12: warning: "IN6_IS_ADDR_MULTICAST" redefined
+   12 | #define IN6_IS_ADDR_MULTICAST(a)    IN_MULTICAST(a)
+      | 
+In file included from /home/jj/esp-idf/components/lwip/lwip/src/include/lwip/sockets.h:53,
+                 from /home/jj/esp-idf/components/lwip/include/lwip/sockets.h:8,
+                 from /home/jj/esp-idf/components/lwip/port/esp32xx/include/sys/socket.h:15,
+                 from /home/jj/esp-idf/components/esp_http_server/src/esp_httpd_priv.h:12:
+/home/jj/esp-idf/components/lwip/lwip/src/include/lwip/inet.h:130: note: this is the location of the previous definition
+  130 | #define IN6_IS_ADDR_MULTICAST(a)    ip6_addr_ismulticast((ip6_addr_t*)(a))
+      | 
+[7/903] Building C object esp-idf/esp_http_server/CMakeFiles/__idf_esp_http_server.dir/src/util/ctrl_sock.c.obj
+In file included from /home/jj/esp-idf/components/esp_http_server/src/util/ctrl_sock.c:11:
+/home/jj/esp-idf/components/lwip/port/include/netinet/in.h:12: warning: "IN6_IS_ADDR_MULTICAST" redefined
+   12 | #define IN6_IS_ADDR_MULTICAST(a)    IN_MULTICAST(a)
+      | 
+In file included from /home/jj/esp-idf/components/lwip/lwip/src/include/lwip/sockets.h:53,
+                 from /home/jj/esp-idf/components/lwip/include/lwip/sockets.h:8,
+                 from /home/jj/esp-idf/components/lwip/port/esp32xx/include/sys/socket.h:15,
+                 from /home/jj/esp-idf/components/esp_http_server/src/util/ctrl_sock.c:10:
+/home/jj/esp-idf/components/lwip/lwip/src/include/lwip/inet.h:130: note: this is the location of the previous definition
+  130 | #define IN6_IS_ADDR_MULTICAST(a)    ip6_addr_ismulticast((ip6_addr_t*)(a))
+      | 
+[8/903] Building C object esp-idf/esp_http_client/CMakeFiles/__idf_esp_http_client.dir/lib/http_auth.c.obj
+[9/903] Building C object esp-idf/esp_gdbstub/CMakeFiles/__idf_esp_gdbstub.dir/src/packet.c.obj
+[10/903] Building ASM object esp-idf/esp_gdbstub/CMakeFiles/__idf_esp_gdbstub.dir/src/port/xtensa/gdbstub-entry.S.obj
+[11/903] Building C object esp-idf/esp_http_server/CMakeFiles/__idf_esp_http_server.dir/src/httpd_uri.c.obj
+In file included from /home/jj/esp-idf/components/esp_http_server/src/esp_httpd_priv.h:14,
+                 from /home/jj/esp-idf/components/esp_http_server/src/httpd_uri.c:14:
+/home/jj/esp-idf/components/lwip/port/include/netinet/in.h:12: warning: "IN6_IS_ADDR_MULTICAST" redefined
+   12 | #define IN6_IS_ADDR_MULTICAST(a)    IN_MULTICAST(a)
+      | 
+In file included from /home/jj/esp-idf/components/lwip/lwip/src/include/lwip/sockets.h:53,
+                 from /home/jj/esp-idf/components/lwip/include/lwip/sockets.h:8,
+                 from /home/jj/esp-idf/components/lwip/port/esp32xx/include/sys/socket.h:15,
+                 from /home/jj/esp-idf/components/esp_http_server/src/esp_httpd_priv.h:12:
+/home/jj/esp-idf/components/lwip/lwip/src/include/lwip/inet.h:130: note: this is the location of the previous definition
+  130 | #define IN6_IS_ADDR_MULTICAST(a)    ip6_addr_ismulticast((ip6_addr_t*)(a))
+      | 
+[12/903] Building C object esp-idf/tcp_transport/CMakeFiles/__idf_tcp_transport.dir/transport_internal.c.obj
+[13/903] Building ASM object esp-idf/esp_gdbstub/CMakeFiles/__idf_esp_gdbstub.dir/src/port/xtensa/xt_debugexception.S.obj
+[14/903] Building C object esp-idf/tcp_transport/CMakeFiles/__idf_tcp_transport.dir/transport_socks_proxy.c.obj
+In file included from /home/jj/esp-idf/components/tcp_transport/transport_socks_proxy.c:6:
+/home/jj/esp-idf/components/lwip/port/include/netinet/in.h:12: warning: "IN6_IS_ADDR_MULTICAST" redefined
+   12 | #define IN6_IS_ADDR_MULTICAST(a)    IN_MULTICAST(a)
+      | 
+In file included from /home/jj/esp-idf/components/lwip/port/include/netinet/in.h:10:
+/home/jj/esp-idf/components/lwip/lwip/src/include/lwip/inet.h:130: note: this is the location of the previous definition
+  130 | #define IN6_IS_ADDR_MULTICAST(a)    ip6_addr_ismulticast((ip6_addr_t*)(a))
+      | 
+[15/903] Building C object esp-idf/esp_gdbstub/CMakeFiles/__idf_esp_gdbstub.dir/src/gdbstub_transport.c.obj
+[16/903] Building C object esp-idf/esp_http_server/CMakeFiles/__idf_esp_http_server.dir/src/httpd_sess.c.obj
+In file included from /home/jj/esp-idf/components/esp_http_server/src/esp_httpd_priv.h:14,
+                 from /home/jj/esp-idf/components/esp_http_server/src/httpd_sess.c:14:
+/home/jj/esp-idf/components/lwip/port/include/netinet/in.h:12: warning: "IN6_IS_ADDR_MULTICAST" redefined
+   12 | #define IN6_IS_ADDR_MULTICAST(a)    IN_MULTICAST(a)
+      | 
+In file included from /home/jj/esp-idf/components/lwip/lwip/src/include/lwip/sockets.h:53,
+                 from /home/jj/esp-idf/components/lwip/include/lwip/sockets.h:8,
+                 from /home/jj/esp-idf/components/lwip/port/esp32xx/include/sys/socket.h:15,
+                 from /home/jj/esp-idf/components/esp_http_server/src/esp_httpd_priv.h:12:
+/home/jj/esp-idf/components/lwip/lwip/src/include/lwip/inet.h:130: note: this is the location of the previous definition
+  130 | #define IN6_IS_ADDR_MULTICAST(a)    ip6_addr_ismulticast((ip6_addr_t*)(a))
+      | 
+[17/903] Building C object esp-idf/esp_http_server/CMakeFiles/__idf_esp_http_server.dir/src/httpd_txrx.c.obj
+In file included from /home/jj/esp-idf/components/esp_http_server/src/esp_httpd_priv.h:14,
+                 from /home/jj/esp-idf/components/esp_http_server/src/httpd_txrx.c:13:
+/home/jj/esp-idf/components/lwip/port/include/netinet/in.h:12: warning: "IN6_IS_ADDR_MULTICAST" redefined
+   12 | #define IN6_IS_ADDR_MULTICAST(a)    IN_MULTICAST(a)
+      | 
+In file included from /home/jj/esp-idf/components/lwip/lwip/src/include/lwip/sockets.h:53,
+                 from /home/jj/esp-idf/components/lwip/include/lwip/sockets.h:8,
+                 from /home/jj/esp-idf/components/lwip/port/esp32xx/include/sys/socket.h:15,
+                 from /home/jj/esp-idf/components/esp_http_server/src/esp_httpd_priv.h:12:
+/home/jj/esp-idf/components/lwip/lwip/src/include/lwip/inet.h:130: note: this is the location of the previous definition
+  130 | #define IN6_IS_ADDR_MULTICAST(a)    ip6_addr_ismulticast((ip6_addr_t*)(a))
+      | 
+[18/903] Building C object esp-idf/esp_gdbstub/CMakeFiles/__idf_esp_gdbstub.dir/src/port/xtensa/gdbstub_xtensa.c.obj
+[19/903] Building C object esp-idf/esp_http_server/CMakeFiles/__idf_esp_http_server.dir/src/httpd_main.c.obj
+In file included from /home/jj/esp-idf/components/esp_http_server/src/esp_httpd_priv.h:14,
+                 from /home/jj/esp-idf/components/esp_http_server/src/httpd_main.c:17:
+/home/jj/esp-idf/components/lwip/port/include/netinet/in.h:12: warning: "IN6_IS_ADDR_MULTICAST" redefined
+   12 | #define IN6_IS_ADDR_MULTICAST(a)    IN_MULTICAST(a)
+      | 
+In file included from /home/jj/esp-idf/components/lwip/lwip/src/include/lwip/sockets.h:53,
+                 from /home/jj/esp-idf/components/lwip/include/lwip/sockets.h:8,
+                 from /home/jj/esp-idf/components/lwip/port/esp32xx/include/sys/socket.h:15,
+                 from /home/jj/esp-idf/components/esp_http_server/src/httpd_main.c:8:
+/home/jj/esp-idf/components/lwip/lwip/src/include/lwip/inet.h:130: note: this is the location of the previous definition
+  130 | #define IN6_IS_ADDR_MULTICAST(a)    ip6_addr_ismulticast((ip6_addr_t*)(a))
+      | 
+[20/903] Building C object esp-idf/esp_http_server/CMakeFiles/__idf_esp_http_server.dir/src/httpd_parse.c.obj
+In file included from /home/jj/esp-idf/components/esp_http_server/src/esp_httpd_priv.h:14,
+                 from /home/jj/esp-idf/components/esp_http_server/src/httpd_parse.c:21:
+/home/jj/esp-idf/components/lwip/port/include/netinet/in.h:12: warning: "IN6_IS_ADDR_MULTICAST" redefined
+   12 | #define IN6_IS_ADDR_MULTICAST(a)    IN_MULTICAST(a)
+      | 
+In file included from /home/jj/esp-idf/components/lwip/lwip/src/include/lwip/sockets.h:53,
+                 from /home/jj/esp-idf/components/lwip/include/lwip/sockets.h:8,
+                 from /home/jj/esp-idf/components/lwip/port/esp32xx/include/sys/socket.h:15,
+                 from /home/jj/esp-idf/components/esp_http_server/src/esp_httpd_priv.h:12:
+/home/jj/esp-idf/components/lwip/lwip/src/include/lwip/inet.h:130: note: this is the location of the previous definition
+  130 | #define IN6_IS_ADDR_MULTICAST(a)    ip6_addr_ismulticast((ip6_addr_t*)(a))
+      | 
+[21/903] Building C object esp-idf/esp_https_ota/CMakeFiles/__idf_esp_https_ota.dir/src/esp_https_ota.c.obj
+[22/903] Building C object esp-idf/tcp_transport/CMakeFiles/__idf_tcp_transport.dir/transport.c.obj
+[23/903] Building C object esp-idf/esp_adc/CMakeFiles/__idf_esp_adc.dir/adc_cali.c.obj
+[24/903] Building C object esp-idf/esp_gdbstub/CMakeFiles/__idf_esp_gdbstub.dir/src/gdbstub.c.obj
+[25/903] Building C object esp-idf/esp_eth/CMakeFiles/__idf_esp_eth.dir/src/esp_eth_phy_ip101.c.obj
+[26/903] Building C object esp-idf/esp_eth/CMakeFiles/__idf_esp_eth.dir/src/esp_eth_phy_lan87xx.c.obj
+[27/903] Building C object esp-idf/esp_eth/CMakeFiles/__idf_esp_eth.dir/src/esp_eth_phy_dp83848.c.obj
+[28/903] Building C object esp-idf/tcp_transport/CMakeFiles/__idf_tcp_transport.dir/transport_ssl.c.obj
+[29/903] Building C object esp-idf/esp_eth/CMakeFiles/__idf_esp_eth.dir/src/esp_eth_phy_ksz80xx.c.obj
+[30/903] Building C object esp-idf/esp_adc/CMakeFiles/__idf_esp_adc.dir/adc_cali_curve_fitting.c.obj
+[31/903] Building C object esp-idf/esp_eth/CMakeFiles/__idf_esp_eth.dir/src/esp_eth_netif_glue.c.obj
+[32/903] Linking C static library esp-idf/esp_https_ota/libesp_https_ota.a
+[33/903] Linking C static library esp-idf/esp_http_server/libesp_http_server.a
+[34/903] Building C object esp-idf/tcp_transport/CMakeFiles/__idf_tcp_transport.dir/transport_ws.c.obj
+[35/903] Building C object esp-idf/esp_adc/CMakeFiles/__idf_esp_adc.dir/deprecated/esp_adc_cal_common_legacy.c.obj
+[36/903] Building C object esp-idf/esp-tls/CMakeFiles/__idf_esp-tls.dir/esp-tls-crypto/esp_tls_crypto.c.obj
+[37/903] Building C object esp-idf/esp_eth/CMakeFiles/__idf_esp_eth.dir/src/esp_eth_phy_rtl8201.c.obj
+[38/903] Building C object esp-idf/esp_eth/CMakeFiles/__idf_esp_eth.dir/src/esp_eth_phy_802_3.c.obj
+[39/903] Building C object esp-idf/esp_adc/CMakeFiles/__idf_esp_adc.dir/deprecated/esp32/esp_adc_cal_legacy.c.obj
+[40/903] Building C object esp-idf/esp_eth/CMakeFiles/__idf_esp_eth.dir/src/esp_eth.c.obj
+[41/903] Building C object esp-idf/esp_adc/CMakeFiles/__idf_esp_adc.dir/adc_common.c.obj
+[42/903] Building C object esp-idf/esp_adc/CMakeFiles/__idf_esp_adc.dir/esp32/adc_cali_line_fitting.c.obj
+[43/903] Building C object esp-idf/esp_wifi/CMakeFiles/__idf_esp_wifi.dir/src/mesh_event.c.obj
+[44/903] Building C object esp-idf/esp-tls/CMakeFiles/__idf_esp-tls.dir/esp_tls_error_capture.c.obj
+[45/903] Building C object esp-idf/esp_wifi/CMakeFiles/__idf_esp_wifi.dir/src/wifi_default_ap.c.obj
+[46/903] Building C object esp-idf/esp_wifi/CMakeFiles/__idf_esp_wifi.dir/src/smartconfig.c.obj
+[47/903] Building C object esp-idf/esp_adc/CMakeFiles/__idf_esp_adc.dir/adc_oneshot.c.obj
+[48/903] Building C object esp-idf/esp_http_client/CMakeFiles/__idf_esp_http_client.dir/esp_http_client.c.obj
+[49/903] Building C object esp-idf/esp_wifi/CMakeFiles/__idf_esp_wifi.dir/src/wifi_netif.c.obj
+[50/903] Building C object esp-idf/esp_eth/CMakeFiles/__idf_esp_eth.dir/src/esp_eth_mac_esp.c.obj
+[51/903] Linking C static library esp-idf/esp_http_client/libesp_http_client.a
+[52/903] Building C object esp-idf/esp_adc/CMakeFiles/__idf_esp_adc.dir/adc_continuous.c.obj
+[53/903] Building C object esp-idf/esp_coex/CMakeFiles/__idf_esp_coex.dir/esp32/esp_coex_adapter.c.obj
+[54/903] Building C object esp-idf/wpa_supplicant/CMakeFiles/__idf_wpa_supplicant.dir/port/os_xtensa.c.obj
+[55/903] Building C object esp-idf/esp_wifi/CMakeFiles/__idf_esp_wifi.dir/src/wifi_default.c.obj
+[56/903] Building C object esp-idf/esp_wifi/CMakeFiles/__idf_esp_wifi.dir/src/wifi_init.c.obj
+[57/903] Building C object esp-idf/esp_wifi/CMakeFiles/__idf_esp_wifi.dir/src/smartconfig_ack.c.obj
+[58/903] Linking C static library esp-idf/tcp_transport/libtcp_transport.a
+[59/903] Building C object esp-idf/esp-tls/CMakeFiles/__idf_esp-tls.dir/esp_tls_mbedtls.c.obj
+[60/903] Building C object esp-idf/wpa_supplicant/CMakeFiles/__idf_wpa_supplicant.dir/port/eloop.c.obj
+[61/903] Building C object esp-idf/wpa_supplicant/CMakeFiles/__idf_wpa_supplicant.dir/src/ap/ap_config.c.obj
+[62/903] Building C object esp-idf/wpa_supplicant/CMakeFiles/__idf_wpa_supplicant.dir/src/ap/ieee802_1x.c.obj
+[63/903] Building C object esp-idf/esp-tls/CMakeFiles/__idf_esp-tls.dir/esp_tls.c.obj
+[64/903] Building C object esp-idf/wpa_supplicant/CMakeFiles/__idf_wpa_supplicant.dir/src/ap/sta_info.c.obj
+[65/903] Building C object esp-idf/wpa_supplicant/CMakeFiles/__idf_wpa_supplicant.dir/src/ap/wpa_auth_ie.c.obj
+[66/903] Building C object esp-idf/wpa_supplicant/CMakeFiles/__idf_wpa_supplicant.dir/src/ap/pmksa_cache_auth.c.obj
+[67/903] Building C object esp-idf/esp_wifi/CMakeFiles/__idf_esp_wifi.dir/esp32/esp_adapter.c.obj
+[68/903] Linking C static library esp-idf/esp_gdbstub/libesp_gdbstub.a
+[69/903] Building C object esp-idf/wpa_supplicant/CMakeFiles/__idf_wpa_supplicant.dir/src/ap/comeback_token.c.obj
+[70/903] Building C object esp-idf/wpa_supplicant/CMakeFiles/__idf_wpa_supplicant.dir/src/common/dragonfly.c.obj
+[71/903] Building C object esp-idf/wpa_supplicant/CMakeFiles/__idf_wpa_supplicant.dir/src/utils/bitfield.c.obj
+[72/903] Building C object esp-idf/wpa_supplicant/CMakeFiles/__idf_wpa_supplicant.dir/src/crypto/sha256-kdf.c.obj
+[73/903] Building C object esp-idf/wpa_supplicant/CMakeFiles/__idf_wpa_supplicant.dir/src/crypto/crypto_ops.c.obj
+[74/903] Building C object esp-idf/wpa_supplicant/CMakeFiles/__idf_wpa_supplicant.dir/src/ap/ieee802_11.c.obj
+[75/903] Building C object esp-idf/wpa_supplicant/CMakeFiles/__idf_wpa_supplicant.dir/src/crypto/aes-siv.c.obj
+[76/903] Linking C static library esp-idf/esp_eth/libesp_eth.a
+[77/903] Building C object esp-idf/wpa_supplicant/CMakeFiles/__idf_wpa_supplicant.dir/src/crypto/dh_group5.c.obj
+[78/903] Building C object esp-idf/wpa_supplicant/CMakeFiles/__idf_wpa_supplicant.dir/src/crypto/ccmp.c.obj
+[79/903] Building C object esp-idf/wpa_supplicant/CMakeFiles/__idf_wpa_supplicant.dir/src/crypto/aes-gcm.c.obj
+[80/903] Building C object esp-idf/wpa_supplicant/CMakeFiles/__idf_wpa_supplicant.dir/src/crypto/dh_groups.c.obj
+[81/903] Building C object esp-idf/wpa_supplicant/CMakeFiles/__idf_wpa_supplicant.dir/src/crypto/sha1-tlsprf.c.obj
+[82/903] Building C object esp-idf/wpa_supplicant/CMakeFiles/__idf_wpa_supplicant.dir/src/crypto/sha256-tlsprf.c.obj
+[83/903] Linking C static library esp-idf/esp_adc/libesp_adc.a
+[84/903] Building C object esp-idf/wpa_supplicant/CMakeFiles/__idf_wpa_supplicant.dir/src/crypto/sha384-tlsprf.c.obj
+[85/903] Building C object esp-idf/wpa_supplicant/CMakeFiles/__idf_wpa_supplicant.dir/src/crypto/sha256-prf.c.obj
+[86/903] Building C object esp-idf/wpa_supplicant/CMakeFiles/__idf_wpa_supplicant.dir/src/crypto/ms_funcs.c.obj
+[87/903] Building C object esp-idf/wpa_supplicant/CMakeFiles/__idf_wpa_supplicant.dir/src/common/wpa_common.c.obj
+[88/903] Linking C static library esp-idf/esp-tls/libesp-tls.a
+[89/903] Building C object esp-idf/wpa_supplicant/CMakeFiles/__idf_wpa_supplicant.dir/src/crypto/sha1-prf.c.obj
+[90/903] Building C object esp-idf/wpa_supplicant/CMakeFiles/__idf_wpa_supplicant.dir/src/crypto/sha384-prf.c.obj
+[91/903] Building C object esp-idf/wpa_supplicant/CMakeFiles/__idf_wpa_supplicant.dir/src/eap_common/eap_wsc_common.c.obj
+[92/903] Building C object esp-idf/wpa_supplicant/CMakeFiles/__idf_wpa_supplicant.dir/src/crypto/sha1-tprf.c.obj
+[93/903] Building C object esp-idf/wpa_supplicant/CMakeFiles/__idf_wpa_supplicant.dir/src/eap_peer/chap.c.obj
+[94/903] Building C object esp-idf/wpa_supplicant/CMakeFiles/__idf_wpa_supplicant.dir/src/crypto/md4-internal.c.obj
+[95/903] Building C object esp-idf/wpa_supplicant/CMakeFiles/__idf_wpa_supplicant.dir/src/eap_peer/eap_common.c.obj
+[96/903] Building C object esp-idf/wpa_supplicant/CMakeFiles/__idf_wpa_supplicant.dir/src/ap/wpa_auth.c.obj
+[97/903] Building C object esp-idf/wpa_supplicant/CMakeFiles/__idf_wpa_supplicant.dir/src/eap_peer/eap_peap_common.c.obj
+[98/903] Building C object esp-idf/wpa_supplicant/CMakeFiles/__idf_wpa_supplicant.dir/src/eap_peer/eap_tls.c.obj
+[99/903] Building C object esp-idf/http_parser/CMakeFiles/__idf_http_parser.dir/http_parser.c.obj
+[100/903] Building C object esp-idf/wpa_supplicant/CMakeFiles/__idf_wpa_supplicant.dir/src/common/ieee802_11_common.c.obj
+[101/903] Building C object esp-idf/wpa_supplicant/CMakeFiles/__idf_wpa_supplicant.dir/src/eap_peer/mschapv2.c.obj
+[102/903] Building C object esp-idf/wpa_supplicant/CMakeFiles/__idf_wpa_supplicant.dir/src/eap_peer/eap_fast_common.c.obj
+[103/903] Building C object esp-idf/wpa_supplicant/CMakeFiles/__idf_wpa_supplicant.dir/src/eap_peer/eap_mschapv2.c.obj
+[104/903] Linking C static library esp-idf/http_parser/libhttp_parser.a
+[105/903] Building C object esp-idf/wpa_supplicant/CMakeFiles/__idf_wpa_supplicant.dir/src/eap_peer/eap.c.obj
+[106/903] Linking C static library esp-idf/esp_wifi/libesp_wifi.a
+[107/903] Building C object esp-idf/wpa_supplicant/CMakeFiles/__idf_wpa_supplicant.dir/src/utils/ext_password.c.obj
+[108/903] Building C object esp-idf/wpa_supplicant/CMakeFiles/__idf_wpa_supplicant.dir/src/utils/base64.c.obj
+[109/903] Building C object esp-idf/wpa_supplicant/CMakeFiles/__idf_wpa_supplicant.dir/src/common/sae.c.obj
+[110/903] Building C object esp-idf/wpa_supplicant/CMakeFiles/__idf_wpa_supplicant.dir/src/eap_peer/eap_peap.c.obj
+[111/903] Building C object esp-idf/wpa_supplicant/CMakeFiles/__idf_wpa_supplicant.dir/src/rsn_supp/pmksa_cache.c.obj
+[112/903] Building C object esp-idf/wpa_supplicant/CMakeFiles/__idf_wpa_supplicant.dir/src/rsn_supp/wpa_ie.c.obj
+[113/903] Building C object esp-idf/wpa_supplicant/CMakeFiles/__idf_wpa_supplicant.dir/src/eap_peer/eap_tls_common.c.obj
+[114/903] Building C object esp-idf/wpa_supplicant/CMakeFiles/__idf_wpa_supplicant.dir/src/utils/wpa_debug.c.obj
+[115/903] Building C object esp-idf/wpa_supplicant/CMakeFiles/__idf_wpa_supplicant.dir/src/eap_peer/eap_ttls.c.obj
+[116/903] Building C object esp-idf/wpa_supplicant/CMakeFiles/__idf_wpa_supplicant.dir/src/utils/uuid.c.obj
+[117/903] Building C object esp-idf/wpa_supplicant/CMakeFiles/__idf_wpa_supplicant.dir/src/utils/common.c.obj
+[118/903] Building C object esp-idf/wpa_supplicant/CMakeFiles/__idf_wpa_supplicant.dir/src/utils/wpabuf.c.obj
+[119/903] Building C object esp-idf/wpa_supplicant/CMakeFiles/__idf_wpa_supplicant.dir/src/eap_peer/eap_fast_pac.c.obj
+[120/903] Building C object esp-idf/wpa_supplicant/CMakeFiles/__idf_wpa_supplicant.dir/src/wps/wps.c.obj
+[121/903] Building C object esp-idf/wpa_supplicant/CMakeFiles/__idf_wpa_supplicant.dir/esp_supplicant/src/esp_wpa2_api_port.c.obj
+[122/903] Building C object esp-idf/wpa_supplicant/CMakeFiles/__idf_wpa_supplicant.dir/src/utils/json.c.obj
+[123/903] Building C object esp-idf/wpa_supplicant/CMakeFiles/__idf_wpa_supplicant.dir/src/common/scan.c.obj
+[124/903] Building C object esp-idf/wpa_supplicant/CMakeFiles/__idf_wpa_supplicant.dir/src/wps/wps_attr_process.c.obj
+[125/903] Building C object esp-idf/wpa_supplicant/CMakeFiles/__idf_wpa_supplicant.dir/src/wps/wps_dev_attr.c.obj
+[126/903] Building C object esp-idf/wpa_supplicant/CMakeFiles/__idf_wpa_supplicant.dir/src/wps/wps_attr_parse.c.obj
+[127/903] Building C object esp-idf/wpa_supplicant/CMakeFiles/__idf_wpa_supplicant.dir/src/wps/wps_attr_build.c.obj
+[128/903] Building C object esp-idf/wpa_supplicant/CMakeFiles/__idf_wpa_supplicant.dir/src/wps/wps_common.c.obj
+[129/903] Building C object esp-idf/wpa_supplicant/CMakeFiles/__idf_wpa_supplicant.dir/esp_supplicant/src/esp_scan.c.obj
+[130/903] Building C object esp-idf/wpa_supplicant/CMakeFiles/__idf_wpa_supplicant.dir/src/common/sae_pk.c.obj
+[131/903] Building C object esp-idf/wpa_supplicant/CMakeFiles/__idf_wpa_supplicant.dir/esp_supplicant/src/esp_wpas_glue.c.obj
+[132/903] Building C object esp-idf/wpa_supplicant/CMakeFiles/__idf_wpa_supplicant.dir/esp_supplicant/src/esp_wpa_main.c.obj
+[133/903] Building C object esp-idf/wpa_supplicant/CMakeFiles/__idf_wpa_supplicant.dir/src/eap_peer/eap_fast.c.obj
+[134/903] Building C object esp-idf/wpa_supplicant/CMakeFiles/__idf_wpa_supplicant.dir/esp_supplicant/src/esp_common.c.obj
+[135/903] Building C object esp-idf/wpa_supplicant/CMakeFiles/__idf_wpa_supplicant.dir/src/common/bss.c.obj
+[136/903] Building C object esp-idf/wpa_supplicant/CMakeFiles/__idf_wpa_supplicant.dir/esp_supplicant/src/esp_owe.c.obj
+[137/903] Building C object esp-idf/wpa_supplicant/CMakeFiles/__idf_wpa_supplicant.dir/esp_supplicant/src/esp_hostap.c.obj
+[138/903] Building C object esp-idf/wpa_supplicant/CMakeFiles/__idf_wpa_supplicant.dir/src/wps/wps_enrollee.c.obj
+[139/903] Building C object esp-idf/wpa_supplicant/CMakeFiles/__idf_wpa_supplicant.dir/src/crypto/rc4.c.obj
+[140/903] Building C object esp-idf/wpa_supplicant/CMakeFiles/__idf_wpa_supplicant.dir/src/rsn_supp/wpa.c.obj
+[141/903] Building C object esp-idf/wpa_supplicant/CMakeFiles/__idf_wpa_supplicant.dir/esp_supplicant/src/crypto/fastpbkdf2.c.obj
+[142/903] Linking C static library esp-idf/esp_coex/libesp_coex.a
+[143/903] Building C object esp-idf/wpa_supplicant/CMakeFiles/__idf_wpa_supplicant.dir/src/crypto/aes-wrap.c.obj
+[144/903] Building C object esp-idf/wpa_supplicant/CMakeFiles/__idf_wpa_supplicant.dir/esp_supplicant/src/esp_eap_client.c.obj
+[145/903] Building C object esp-idf/wpa_supplicant/CMakeFiles/__idf_wpa_supplicant.dir/esp_supplicant/src/crypto/crypto_mbedtls-bignum.c.obj
+[146/903] Building C object esp-idf/wpa_supplicant/CMakeFiles/__idf_wpa_supplicant.dir/esp_supplicant/src/esp_wpa3.c.obj
+[147/903] Building C object esp-idf/esp_netif/CMakeFiles/__idf_esp_netif.dir/esp_netif_defaults.c.obj
+[148/903] Building C object esp-idf/wpa_supplicant/CMakeFiles/__idf_wpa_supplicant.dir/src/crypto/des-internal.c.obj
+[149/903] Building C object esp-idf/wpa_supplicant/CMakeFiles/__idf_wpa_supplicant.dir/esp_supplicant/src/crypto/crypto_mbedtls-rsa.c.obj
+[150/903] Building C object esp-idf/wpa_supplicant/CMakeFiles/__idf_wpa_supplicant.dir/src/crypto/aes-unwrap.c.obj
+[151/903] Building C object esp-idf/wpa_supplicant/CMakeFiles/__idf_wpa_supplicant.dir/esp_supplicant/src/crypto/crypto_mbedtls.c.obj
+[152/903] Building C object esp-idf/esp_netif/CMakeFiles/__idf_esp_netif.dir/esp_netif_objects.c.obj
+[153/903] Building C object esp-idf/wpa_supplicant/CMakeFiles/__idf_wpa_supplicant.dir/src/crypto/aes-ccm.c.obj
+[154/903] Building C object esp-idf/esp_netif/CMakeFiles/__idf_esp_netif.dir/esp_netif_handlers.c.obj
+[155/903] Building C object esp-idf/esp_netif/CMakeFiles/__idf_esp_netif.dir/lwip/esp_netif_lwip_defaults.c.obj
+[156/903] Building C object esp-idf/esp_netif/CMakeFiles/__idf_esp_netif.dir/lwip/esp_netif_sntp.c.obj
+[157/903] Building C object esp-idf/esp_netif/CMakeFiles/__idf_esp_netif.dir/lwip/netif/wlanif.c.obj
+[158/903] Building C object esp-idf/esp_netif/CMakeFiles/__idf_esp_netif.dir/lwip/netif/ethernetif.c.obj
+[159/903] Building C object esp-idf/wpa_supplicant/CMakeFiles/__idf_wpa_supplicant.dir/esp_supplicant/src/crypto/tls_mbedtls.c.obj
+[160/903] Building C object esp-idf/esp_netif/CMakeFiles/__idf_esp_netif.dir/lwip/netif/esp_pbuf_ref.c.obj
+[161/903] Building C object esp-idf/lwip/CMakeFiles/__idf_lwip.dir/lwip/src/api/err.c.obj
+[162/903] Building C object esp-idf/lwip/CMakeFiles/__idf_lwip.dir/apps/sntp/sntp.c.obj
+[163/903] Building C object esp-idf/lwip/CMakeFiles/__idf_lwip.dir/lwip/src/api/netifapi.c.obj
+[164/903] Building C object esp-idf/lwip/CMakeFiles/__idf_lwip.dir/lwip/src/api/if_api.c.obj
+[165/903] Building C object esp-idf/wpa_supplicant/CMakeFiles/__idf_wpa_supplicant.dir/esp_supplicant/src/crypto/crypto_mbedtls-ec.c.obj
+[166/903] Building C object esp-idf/lwip/CMakeFiles/__idf_lwip.dir/lwip/src/api/netbuf.c.obj
+[167/903] Building C object esp-idf/wpa_supplicant/CMakeFiles/__idf_wpa_supplicant.dir/esp_supplicant/src/esp_wps.c.obj
+[168/903] Building C object esp-idf/lwip/CMakeFiles/__idf_lwip.dir/lwip/src/api/netdb.c.obj
+[169/903] Building C object esp-idf/lwip/CMakeFiles/__idf_lwip.dir/lwip/src/core/def.c.obj
+[170/903] Building C object esp-idf/lwip/CMakeFiles/__idf_lwip.dir/lwip/src/apps/netbiosns/netbiosns.c.obj
+[171/903] Building C object esp-idf/lwip/CMakeFiles/__idf_lwip.dir/lwip/src/core/inet_chksum.c.obj
+[172/903] Building C object esp-idf/lwip/CMakeFiles/__idf_lwip.dir/lwip/src/core/mem.c.obj
+[173/903] Building C object esp-idf/lwip/CMakeFiles/__idf_lwip.dir/lwip/src/api/tcpip.c.obj
+[174/903] Building C object esp-idf/lwip/CMakeFiles/__idf_lwip.dir/lwip/src/core/init.c.obj
+[175/903] Building C object esp-idf/lwip/CMakeFiles/__idf_lwip.dir/lwip/src/api/api_lib.c.obj
+[176/903] Building C object esp-idf/lwip/CMakeFiles/__idf_lwip.dir/lwip/src/core/ip.c.obj
+[177/903] Building C object esp-idf/lwip/CMakeFiles/__idf_lwip.dir/lwip/src/apps/sntp/sntp.c.obj
+[178/903] Building C object esp-idf/lwip/CMakeFiles/__idf_lwip.dir/lwip/src/core/memp.c.obj
+[179/903] Building C object esp-idf/lwip/CMakeFiles/__idf_lwip.dir/lwip/src/core/stats.c.obj
+[180/903] Building C object esp-idf/lwip/CMakeFiles/__idf_lwip.dir/lwip/src/core/sys.c.obj
+[181/903] Linking C static library esp-idf/wpa_supplicant/libwpa_supplicant.a
+[182/903] Building C object esp-idf/lwip/CMakeFiles/__idf_lwip.dir/lwip/src/core/ipv4/autoip.c.obj
+[183/903] Building C object esp-idf/lwip/CMakeFiles/__idf_lwip.dir/lwip/src/api/api_msg.c.obj
+[184/903] Building C object esp-idf/lwip/CMakeFiles/__idf_lwip.dir/lwip/src/core/raw.c.obj
+[185/903] Building C object esp-idf/lwip/CMakeFiles/__idf_lwip.dir/lwip/src/core/timeouts.c.obj
+[186/903] Building C object esp-idf/lwip/CMakeFiles/__idf_lwip.dir/lwip/src/core/pbuf.c.obj
+[187/903] Building C object esp-idf/lwip/CMakeFiles/__idf_lwip.dir/lwip/src/core/dns.c.obj
+[188/903] Building C object esp-idf/lwip/CMakeFiles/__idf_lwip.dir/lwip/src/core/ipv4/icmp.c.obj
+[189/903] Building C object esp-idf/lwip/CMakeFiles/__idf_lwip.dir/lwip/src/core/netif.c.obj
+[190/903] Building C object esp-idf/lwip/CMakeFiles/__idf_lwip.dir/lwip/src/core/ipv4/igmp.c.obj
+[191/903] Building C object esp-idf/lwip/CMakeFiles/__idf_lwip.dir/lwip/src/core/ipv4/ip4_napt.c.obj
+[192/903] Building C object esp-idf/lwip/CMakeFiles/__idf_lwip.dir/lwip/src/core/ipv6/dhcp6.c.obj
+[193/903] Building C object esp-idf/lwip/CMakeFiles/__idf_lwip.dir/lwip/src/core/ipv4/ip4.c.obj
+[194/903] Building C object esp-idf/esp_netif/CMakeFiles/__idf_esp_netif.dir/lwip/esp_netif_lwip.c.obj
+[195/903] Building C object esp-idf/lwip/CMakeFiles/__idf_lwip.dir/lwip/src/core/udp.c.obj
+[196/903] Building C object esp-idf/lwip/CMakeFiles/__idf_lwip.dir/lwip/src/core/ipv6/ethip6.c.obj
+[197/903] Building C object esp-idf/lwip/CMakeFiles/__idf_lwip.dir/lwip/src/core/ipv4/etharp.c.obj
+[198/903] Building C object esp-idf/lwip/CMakeFiles/__idf_lwip.dir/lwip/src/core/ipv6/inet6.c.obj
+[199/903] Building C object esp-idf/lwip/CMakeFiles/__idf_lwip.dir/lwip/src/core/tcp_out.c.obj
+[200/903] Building C object esp-idf/lwip/CMakeFiles/__idf_lwip.dir/lwip/src/core/ipv6/icmp6.c.obj
+[201/903] Building C object esp-idf/lwip/CMakeFiles/__idf_lwip.dir/lwip/src/core/ipv4/ip4_frag.c.obj
+[202/903] Building C object esp-idf/lwip/CMakeFiles/__idf_lwip.dir/lwip/src/core/ipv4/ip4_addr.c.obj
+[203/903] Building C object esp-idf/lwip/CMakeFiles/__idf_lwip.dir/lwip/src/core/ipv4/dhcp.c.obj
+FAILED: esp-idf/lwip/CMakeFiles/__idf_lwip.dir/lwip/src/core/ipv4/dhcp.c.obj 
+/home/jj/.espressif/tools/xtensa-esp32-elf/esp-12.2.0_20230208/xtensa-esp32-elf/bin/xtensa-esp32-elf-gcc -DESP_LWIP_COMPONENT_BUILD -DESP_PLATFORM -DIDF_VER=\"v5.1.2-dirty\" -DSOC_MMU_PAGE_SIZE=CONFIG_MMU_PAGE_SIZE -D_GNU_SOURCE -D_POSIX_READER_WRITER_LOCKS -I/home/jj/CheckClass/build/config -I/home/jj/esp-idf/components/lwip/include -I/home/jj/esp-idf/components/lwip/include/apps -I/home/jj/esp-idf/components/lwip/include/apps/sntp -I/home/jj/esp-idf/components/lwip/lwip/src/include -I/home/jj/esp-idf/components/lwip/port/include -I/home/jj/esp-idf/components/lwip/port/freertos/include -I/home/jj/esp-idf/components/lwip/port/esp32xx/include -I/home/jj/esp-idf/components/lwip/port/esp32xx/include/arch -I/home/jj/esp-idf/components/newlib/platform_include -I/home/jj/esp-idf/components/freertos/FreeRTOS-Kernel/include -I/home/jj/esp-idf/components/freertos/FreeRTOS-Kernel/portable/xtensa/include -I/home/jj/esp-idf/components/freertos/esp_additions/include/freertos -I/home/jj/esp-idf/components/freertos/esp_additions/include -I/home/jj/esp-idf/components/freertos/esp_additions/arch/xtensa/include -I/home/jj/esp-idf/components/esp_hw_support/include -I/home/jj/esp-idf/components/esp_hw_support/include/soc -I/home/jj/esp-idf/components/esp_hw_support/include/soc/esp32 -I/home/jj/esp-idf/components/esp_hw_support/port/esp32/. -I/home/jj/esp-idf/components/esp_hw_support/port/esp32/private_include -I/home/jj/esp-idf/components/heap/include -I/home/jj/esp-idf/components/log/include -I/home/jj/esp-idf/components/soc/include -I/home/jj/esp-idf/components/soc/esp32 -I/home/jj/esp-idf/components/soc/esp32/include -I/home/jj/esp-idf/components/hal/esp32/include -I/home/jj/esp-idf/components/hal/include -I/home/jj/esp-idf/components/hal/platform_port/include -I/home/jj/esp-idf/components/esp_rom/include -I/home/jj/esp-idf/components/esp_rom/include/esp32 -I/home/jj/esp-idf/components/esp_rom/esp32 -I/home/jj/esp-idf/components/esp_common/include -I/home/jj/esp-idf/components/esp_system/include -I/home/jj/esp-idf/components/esp_system/port/soc -I/home/jj/esp-idf/components/esp_system/port/include/private -I/home/jj/esp-idf/components/xtensa/include -I/home/jj/esp-idf/components/xtensa/esp32/include -I/home/jj/esp-idf/components/vfs/include -I/home/jj/esp-idf/components/esp_eth/include -I/home/jj/esp-idf/components/esp_event/include -I/home/jj/esp-idf/components/driver/include -I/home/jj/esp-idf/components/driver/deprecated -I/home/jj/esp-idf/components/driver/analog_comparator/include -I/home/jj/esp-idf/components/driver/dac/include -I/home/jj/esp-idf/components/driver/gpio/include -I/home/jj/esp-idf/components/driver/gptimer/include -I/home/jj/esp-idf/components/driver/i2c/include -I/home/jj/esp-idf/components/driver/i2s/include -I/home/jj/esp-idf/components/driver/ledc/include -I/home/jj/esp-idf/components/driver/mcpwm/include -I/home/jj/esp-idf/components/driver/parlio/include -I/home/jj/esp-idf/components/driver/pcnt/include -I/home/jj/esp-idf/components/driver/rmt/include -I/home/jj/esp-idf/components/driver/sdio_slave/include -I/home/jj/esp-idf/components/driver/sdmmc/include -I/home/jj/esp-idf/components/driver/sigma_delta/include -I/home/jj/esp-idf/components/driver/spi/include -I/home/jj/esp-idf/components/driver/temperature_sensor/include -I/home/jj/esp-idf/components/driver/touch_sensor/include -I/home/jj/esp-idf/components/driver/twai/include -I/home/jj/esp-idf/components/driver/uart/include -I/home/jj/esp-idf/components/driver/usb_serial_jtag/include -I/home/jj/esp-idf/components/driver/touch_sensor/esp32/include -I/home/jj/esp-idf/components/esp_pm/include -I/home/jj/esp-idf/components/esp_ringbuf/include -mlongcalls -Wno-frame-address  -fdiagnostics-color=always -ffunction-sections -fdata-sections -Wall -Werror=all -Wno-error=unused-function -Wno-error=unused-variable -Wno-error=unused-but-set-variable -Wno-error=deprecated-declarations -Wextra -Wno-unused-parameter -Wno-sign-compare -Wno-enum-conversion -gdwarf-4 -ggdb -Og -fmacro-prefix-map=/home/jj/CheckClass=. -fmacro-prefix-map=/home/jj/esp-idf=/IDF -fstrict-volatile-bitfields -fno-jump-tables -fno-tree-switch-conversion -DconfigENABLE_FREERTOS_DEBUG_OCDAWARE=1 -std=gnu17 -Wno-old-style-declaration -Wno-address -Wno-format -MD -MT esp-idf/lwip/CMakeFiles/__idf_lwip.dir/lwip/src/core/ipv4/dhcp.c.obj -MF esp-idf/lwip/CMakeFiles/__idf_lwip.dir/lwip/src/core/ipv4/dhcp.c.obj.d -o esp-idf/lwip/CMakeFiles/__idf_lwip.dir/lwip/src/core/ipv4/dhcp.c.obj -c /home/jj/esp-idf/components/lwip/lwip/src/core/ipv4/dhcp.c
+/home/jj/esp-idf/components/lwip/lwip/src/core/ipv4/dhcp.c: In function 'dhcp_select':
+/home/jj/esp-idf/components/lwip/lwip/src/core/ipv4/dhcp.c:522:11: error: implicit declaration of function 'DHCP_REQUEST_BACKOFF_SEQUENCE'; did you mean 'DHCP_REQUEST_TIMEOUT_SEQUENCE'? [-Werror=implicit-function-declaration]
+  522 |   msecs = DHCP_REQUEST_BACKOFF_SEQUENCE(DHCP_STATE_REQUESTING, dhcp->tries);
+      |           ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+      |           DHCP_REQUEST_TIMEOUT_SEQUENCE
+/home/jj/esp-idf/components/lwip/lwip/src/core/ipv4/dhcp.c: In function 'dhcp_bind':
+/home/jj/esp-idf/components/lwip/lwip/src/core/ipv4/dhcp.c:1176:5: error: implicit declaration of function 'DHCP_SET_TIMEOUT_FROM_OFFERED_T0_LEASE'; did you mean 'DHCP_CALC_TIMEOUT_FROM_OFFERED_T0_LEASE'? [-Werror=implicit-function-declaration]
+ 1176 |     DHCP_SET_TIMEOUT_FROM_OFFERED_T0_LEASE(dhcp->t0_timeout, dhcp);
+      |     ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+      |     DHCP_CALC_TIMEOUT_FROM_OFFERED_T0_LEASE
+/home/jj/esp-idf/components/lwip/lwip/src/core/ipv4/dhcp.c:1184:5: error: implicit declaration of function 'DHCP_SET_TIMEOUT_FROM_OFFERED_T1_RENEW'; did you mean 'DHCP_CALC_TIMEOUT_FROM_OFFERED_T1_RENEW'? [-Werror=implicit-function-declaration]
+ 1184 |     DHCP_SET_TIMEOUT_FROM_OFFERED_T1_RENEW(dhcp->t1_timeout, dhcp);
+      |     ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+      |     DHCP_CALC_TIMEOUT_FROM_OFFERED_T1_RENEW
+/home/jj/esp-idf/components/lwip/lwip/src/core/ipv4/dhcp.c:1191:5: error: implicit declaration of function 'DHCP_SET_TIMEOUT_FROM_OFFERED_T2_REBIND'; did you mean 'DHCP_CALC_TIMEOUT_FROM_OFFERED_T2_REBIND'? [-Werror=implicit-function-declaration]
+ 1191 |     DHCP_SET_TIMEOUT_FROM_OFFERED_T2_REBIND(dhcp->t2_timeout, dhcp);
+      |     ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+      |     DHCP_CALC_TIMEOUT_FROM_OFFERED_T2_REBIND
+cc1: some warnings being treated as errors
+[204/903] Building C object esp-idf/lwip/CMakeFiles/__idf_lwip.dir/lwip/src/core/tcp.c.obj
+[205/903] Building C object esp-idf/lwip/CMakeFiles/__idf_lwip.dir/lwip/src/core/ipv6/ip6_addr.c.obj
+[206/903] Building C object esp-idf/lwip/CMakeFiles/__idf_lwip.dir/lwip/src/core/tcp_in.c.obj
+[207/903] Building C object esp-idf/lwip/CMakeFiles/__idf_lwip.dir/lwip/src/core/ipv6/ip6_frag.c.obj
+[208/903] Building C object esp-idf/lwip/CMakeFiles/__idf_lwip.dir/lwip/src/netif/ethernet.c.obj
+[209/903] Building C object esp-idf/lwip/CMakeFiles/__idf_lwip.dir/lwip/src/netif/ppp/auth.c.obj
+[210/903] Building C object esp-idf/lwip/CMakeFiles/__idf_lwip.dir/lwip/src/netif/ppp/ccp.c.obj
+[211/903] Building C object esp-idf/lwip/CMakeFiles/__idf_lwip.dir/lwip/src/netif/bridgeif.c.obj
+[212/903] Building C object esp-idf/lwip/CMakeFiles/__idf_lwip.dir/lwip/src/netif/ppp/chap-md5.c.obj
+[213/903] Building C object esp-idf/lwip/CMakeFiles/__idf_lwip.dir/lwip/src/netif/ppp/chap_ms.c.obj
+[214/903] Building C object esp-idf/lwip/CMakeFiles/__idf_lwip.dir/lwip/src/netif/bridgeif_fdb.c.obj
+[215/903] Building C object esp-idf/lwip/CMakeFiles/__idf_lwip.dir/lwip/src/netif/ppp/chap-new.c.obj
+[216/903] Building C object esp-idf/lwip/CMakeFiles/__idf_lwip.dir/lwip/src/netif/slipif.c.obj
+[217/903] Building C object esp-idf/lwip/CMakeFiles/__idf_lwip.dir/lwip/src/core/ipv6/mld6.c.obj
+[218/903] Building C object esp-idf/lwip/CMakeFiles/__idf_lwip.dir/lwip/src/core/ipv6/ip6.c.obj
+[219/903] Building C object esp-idf/lwip/CMakeFiles/__idf_lwip.dir/lwip/src/api/sockets.c.obj
+[220/903] Building C object esp-idf/lwip/CMakeFiles/__idf_lwip.dir/lwip/src/core/ipv6/nd6.c.obj
+ninja: build stopped: subcommand failed.

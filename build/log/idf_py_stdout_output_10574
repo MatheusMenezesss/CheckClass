@@ -1,0 +1,31 @@
+[1/9] Performing build step for 'bootloader'
+[1/1] cd /home/jj/CheckClass/build/bootloader/esp-idf/esptool_py && /home/jj/.espressif/python_env/idf5.1_py3.13_env/bin/python /home/jj/esp-idf/components/partition_table/check_sizes.py --offset 0x8000 bootloader 0x1000 /home/jj/CheckClass/build/bootloader/bootloader.bin
+Bootloader binary size 0x68a0 bytes. 0x760 bytes (7%) free.
+[2/9] No install step for 'bootloader'
+[3/9] Completed 'bootloader'
+[4/9] Building C object esp-idf/main/CMakeFiles/__idf_main.dir/checkClass.c.obj
+/home/jj/CheckClass/main/checkClass.c: In function 'PICC_DumpMifareClassicSector':
+/home/jj/CheckClass/main/checkClass.c:45:14: warning: variable 'firstInGroup' set but not used [-Wunused-but-set-variable]
+   45 |         bool firstInGroup;              // True for the first block dumped in the group
+      |              ^~~~~~~~~~~~
+/home/jj/CheckClass/main/checkClass.c:43:17: warning: variable 'g' set but not used [-Wunused-but-set-variable]
+   43 |         uint8_t g[4];                           // Access bits for each of the four groups.
+      |                 ^
+/home/jj/CheckClass/main/checkClass.c:42:14: warning: variable 'invertedError' set but not used [-Wunused-but-set-variable]
+   42 |         bool invertedError;             // True if one of the inverted nibbles did not match
+      |              ^~~~~~~~~~~~~
+/home/jj/CheckClass/main/checkClass.c: In function 'PICC_DumpMifareUltralight':
+/home/jj/CheckClass/main/checkClass.c:158:13: warning: unused variable 'i' [-Wunused-variable]
+  158 |     uint8_t i;
+      |             ^
+[5/9] Linking C static library esp-idf/main/libmain.a
+[6/9] Generating ld/sections.ld
+[7/9] Linking CXX executable checkClass.elf
+[8/9] Generating binary image from built executable
+esptool.py v4.7.0
+Creating esp32 image...
+Merged 2 ELF sections
+Successfully created esp32 image.
+Generated /home/jj/CheckClass/build/checkClass.bin
+[9/9] cd /home/jj/CheckClass/build/esp-idf/esptool_py && /home/jj/.espressif/python_env/idf5.1_py3.13_env/bin/python /home/jj/esp-idf/components/partition_table/check_sizes.py --offset 0x8000 partition --type app /home/jj/CheckClass/build/partition_table/partition-table.bin /home/jj/CheckClass/build/checkClass.bin
+checkClass.bin binary size 0x31b20 bytes. Smallest app partition is 0x100000 bytes. 0xce4e0 bytes (81%) free.

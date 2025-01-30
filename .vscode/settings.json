@@ -1,0 +1,7 @@
+{
+    "files.associations": {
+        "mfrc522.h": "c",
+        "task.h": "c",
+        "gpio.h": "c"
+    }
+}
