@@ -8,6 +8,10 @@
 
 #define PIN_NUM_RST  22
 
+#ifdef __cplusplus
+extern "C" {
+#endif
+
 // MIFARE constants that does not fit anywhere else
 	enum MIFARE_Misc {
 		MF_ACK					= 0xA,		// The MIFARE Classic uses a 4 bit ACK/NAK. Any other value than 0xA is NAK.
@@ -208,7 +212,7 @@ extern enum StatusCode state;
 	void PCD_ClearRegisterBitMask(spi_device_handle_t spi , uint8_t reg , uint8_t mask);
 	void PCD_SetRegisterBitMask(spi_device_handle_t spi , uint8_t reg, uint8_t mask);
 
-	void PCD_Init(spi_device_handle_t spi);
+	void PCD_Init(spi_device_handle_t spi, uint8_t miso, uint8_t mosi, uint8_t clk, uint8_t cs, uint8_t rst);
 	void PCD_AntennaOn(spi_device_handle_t spi);
 	void PCD_Version(spi_device_handle_t spi);
 	bool PICC_IsNewCardPresent(spi_device_handle_t spi);
@@ -258,4 +262,8 @@ extern enum StatusCode state;
 			              uint8_t sendLen,		        ///< Number of bytes in sendData.
 				      bool acceptTimeout	        ///< True => A timeout is also success
 				      );
+
+#ifdef __cplusplus
+}
+#endif
 #endif

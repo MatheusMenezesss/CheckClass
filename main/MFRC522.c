@@ -9,6 +9,16 @@
 #include "driver/gpio.h"
 #include "MFRC522.h"
 
+struct Context
+{
+	gpio_num_t pin_num_miso;
+	gpio_num_t pin_num_mosi;
+	gpio_num_t pin_num_clk;
+	gpio_num_t pin_num_cs;
+	gpio_num_t pin_num_rst;
+};
+
+static struct Context s_Context = {0};
 
 Uid uid;
 enum StatusCode state;	
@@ -102,12 +112,12 @@ uint8_t PCD_ReadRegister(spi_device_handle_t spi , uint8_t Register){
     t.length = 8;
     t.tx_buffer = &reg;
     t.rx_buffer = &val;
-    gpio_set_level(PIN_NUM_CS,0);
+    gpio_set_level(s_Context.pin_num_cs,0);
     ret = spi_device_transmit(spi,&t);
     assert(ret==ESP_OK);
     t.tx_buffer=(uint8_t*)0;
     ret = spi_device_transmit(spi,&t);
-    gpio_set_level(PIN_NUM_CS,1);
+    gpio_set_level(s_Context.pin_num_cs,1);
 
     assert(ret==ESP_OK);
 
@@ -132,12 +142,12 @@ void PCD_ReadRegisterMany(spi_device_handle_t spi,
     t.rxlength = 8*count;
     t.tx_buffer = &reg;
     t.rx_buffer = values;
-    gpio_set_level(PIN_NUM_CS,0);
+    gpio_set_level(s_Context.pin_num_cs,0);
     ret = spi_device_transmit(spi,&t);
     assert(ret==ESP_OK);
     t.tx_buffer=(uint8_t*)0;
     ret = spi_device_transmit(spi,&t);
-    gpio_set_level(PIN_NUM_CS,1);
+    gpio_set_level(s_Context.pin_num_cs,1);
     assert(ret==ESP_OK);
 
 }
@@ -207,16 +217,22 @@ void PCD_StopCrypto1(spi_device_handle_t spi) {
 	PCD_ClearRegisterBitMask(spi,Status2Reg, 0x08); // Status2Reg[7..0] bits are: TempSensClear I2CForceHS reserved reserved MFCrypto1On ModemState[2:0]
 } // End PCD_StopCrypto1()
 
-void PCD_Init(spi_device_handle_t spi){
+void PCD_Init(spi_device_handle_t spi, uint8_t miso, uint8_t mosi, uint8_t clk, uint8_t cs, uint8_t rst){
     
+	s_Context.pin_num_miso = miso;
+	s_Context.pin_num_mosi = mosi;
+	s_Context.pin_num_clk = clk;
+	s_Context.pin_num_cs = cs;
+	s_Context.pin_num_rst = rst;
+
     PCD_Version(spi);
   //  gpio_pad_select_gpio(PIN_NUM_RST);
-    gpio_set_direction(PIN_NUM_RST, GPIO_MODE_OUTPUT);
+    gpio_set_direction(s_Context.pin_num_rst, GPIO_MODE_OUTPUT);
 
     // Hard Reset RFID
-    gpio_set_level(PIN_NUM_RST, 0);
+    gpio_set_level(s_Context.pin_num_rst, 0);
     vTaskDelay(50 / portTICK_PERIOD_MS);
-    gpio_set_level(PIN_NUM_RST, 1);
+    gpio_set_level(s_Context.pin_num_rst, 1);
     vTaskDelay(50 / portTICK_PERIOD_MS);
 
     // Reset baud rates
