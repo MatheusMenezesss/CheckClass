@@ -6,17 +6,17 @@ bool RFID::Init(spi_host_device_t host, uint8_t miso, uint8_t mosi, uint8_t clk,
         .mosi_io_num= mosi,
         .miso_io_num= miso,
         .sclk_io_num= clk,
-        .quadwp_io_num=-1,
-        .quadhd_io_num=-1
+        .quadwp_io_num = -1,
+        .quadhd_io_num = -1
     };
 
     spi_device_interface_config_t devcfg = {
-        .mode=0,                                    //SPI mode 0
-        .clock_speed_hz=5000000,                    //Clock out at 5 MHz
-        .spics_io_num= cs,                          //CS pin
-        .queue_size=7,                              //We want to be able to queue 7 transactions at a time
+        .mode = 0,                                    //SPI mode 0
+        .clock_speed_hz = 5000000,                    //Clock out at 5 MHz
+        .spics_io_num = cs,                          //CS pin
+        .queue_size = 7,                              //We want to be able to queue 7 transactions at a time
     };
-
+    
     // Initialize the SPI bus
     // Attach the RFID to the SPI bus
     if (spi_bus_initialize(host, &buscfg, SPI_DMA_CH_AUTO) == ESP_OK && spi_bus_add_device(host, &devcfg, &m_Handler) == ESP_OK)
