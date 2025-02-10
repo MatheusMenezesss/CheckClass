@@ -1,16 +1,19 @@
 #include <stdio.h>
 #include "driver/gpio.h"
+
 #include "freertos/FreeRTOS.h"
 #include "freertos/task.h"
-#include "esp_system.h"
-#include "rfid.h"
-
 #include "freertos/event_groups.h"
-#include "esp_event.h"
-#include "esp_wifi.h"
+
 #include "nvs_flash.h"
+
+#include "esp_system.h"
+#include "esp_wifi.h"
 #include "esp_netif.h"
 #include "esp_netif_types.h"
+#include "esp_event.h"
+
+#include "rfid.h"
 
 #define SSID "CINGUESTS"
 #define PASSWORD "acessocin"
@@ -18,48 +21,59 @@
 void event_handler(void* arg, esp_event_base_t event_base, int32_t event_id, void* event_data)
 {
     if (event_base == WIFI_EVENT && event_id == WIFI_EVENT_STA_START)
+    {
+        printf("Conectando ao AP...");
         esp_wifi_connect();
+    }
     else if (event_base == WIFI_EVENT && event_id == WIFI_EVENT_STA_DISCONNECTED)
+    {
+        printf("Reconectando ao AP...");
         esp_wifi_connect();
+    }
     else if (event_base == IP_EVENT && event_id == IP_EVENT_STA_GOT_IP) 
     {
         ip_event_got_ip_t* event = (ip_event_got_ip_t*) event_data;
-        printf("got ip: " IPSTR, IP2STR(&event->ip_info.ip));
+        printf("got ip: " IPSTR "\n", IP2STR(&event->ip_info.ip));
     }
 }
 
 extern "C" void app_main(void)
 {
     nvs_flash_init();
-    
+
+    // Inicia a interface de internet do ESP   
     esp_netif_init();
+    // Inicia o event loop padrão do ESP
     esp_event_loop_create_default();
-    
+    // Cria a estação de wifi no driver do wifi
+    esp_netif_create_default_wifi_sta();
+
+    // Prepara a estação com as configurações padrões
     wifi_init_config_t wifi_cfg = WIFI_INIT_CONFIG_DEFAULT();
     esp_wifi_init(&wifi_cfg);
 
     esp_event_handler_instance_register(WIFI_EVENT, ESP_EVENT_ANY_ID, &event_handler, NULL, NULL);
     esp_event_handler_instance_register(IP_EVENT, IP_EVENT_STA_GOT_IP, &event_handler, NULL, NULL);
 
-    esp_netif_create_default_wifi_sta();
-    
+    // Criando as configurações do driver wi-fi
     wifi_config_t sta_cfg = {
-        .sta {
-            .ssid = SSID,
-            .password = PASSWORD,
-            .scan_method = WIFI_ALL_CHANNEL_SCAN,
-            .sort_method = WIFI_CONNECT_AP_BY_SIGNAL,
+        .sta = {
+            .ssid = SSID, // Nome da rede
+            .password = PASSWORD,  // Senha da rede
+            .pmf_cfg = {
+                .capable = true,
+                .required = false
+            },
         }
     };
+    sta_cfg.sta.threshold.authmode = WIFI_AUTH_WPA2_PSK; // Modo de autenticação da rede
 
-    sta_cfg.sta.threshold.rssi = -127;
-    sta_cfg.sta.threshold.authmode = WIFI_AUTH_WPA2_PSK;
-    sta_cfg.sta.threshold.rssi_5g_adjustment = 0;
-    
+    // Setando para o controlador wi-fi operar no modo estação
     esp_wifi_set_mode(WIFI_MODE_STA);
+    // Setando a configuração wi-fi
     esp_wifi_set_config(WIFI_IF_STA, &sta_cfg);
+    // Rodando o wi-fi driver
     esp_wifi_start();
-    esp_wifi_connect();
 
 	RFID rfid;
 	if (!rfid.Init(SPI2_HOST, 19, 23, 18, 2, 22))
