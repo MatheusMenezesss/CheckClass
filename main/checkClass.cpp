@@ -12,25 +12,6 @@
 #define SSID "CINGUESTS"
 #define PASSWORD "acessocin"
 
-void event_handler(void* arg, esp_event_base_t event_base, int32_t event_id, void* event_data)
-{
-    if (event_base == WIFI_EVENT && event_id == WIFI_EVENT_STA_START)
-    {
-        printf("Conectando ao AP...");
-        esp_wifi_connect();
-    }
-    else if (event_base == WIFI_EVENT && event_id == WIFI_EVENT_STA_DISCONNECTED)
-    {
-        printf("Reconectando ao AP...");
-        esp_wifi_connect();
-    }
-    else if (event_base == IP_EVENT && event_id == IP_EVENT_STA_GOT_IP) 
-    {
-        ip_event_got_ip_t* event = (ip_event_got_ip_t*) event_data;
-        printf("got ip: " IPSTR "\n", IP2STR(&event->ip_info.ip));
-    }
-}
-
 extern "C" void app_main(void)
 {
     if (!WIFI::Init(SSID, PASSWORD, &event_handler))
