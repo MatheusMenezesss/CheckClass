@@ -9,34 +9,42 @@
 #include "fatfs.h"
 #include "wifi.h"
 
+#include "esp_log.h"
+
 #define SSID "CINGUESTS"
 #define PASSWORD "acessocin"
 
+void restart()
+{
+    for (int i = 5; i >= 0; i--) 
+    {
+        ESP_LOGW("Main", "Reiniciando em %ds...\n", i);
+        vTaskDelay(1000 / portTICK_PERIOD_MS);
+    }
+
+    fflush(stdout);
+    esp_restart();
+}
+
 extern "C" void app_main(void)
 {
-    if (!WIFI::Init(SSID, PASSWORD, &event_handler))
+    if (!WIFI::Init(SSID, PASSWORD))
     {
-        printf("Nao foi possivel iniciar o sistema de wifi\n");
+        ESP_LOGE("Main", "Nao foi possivel iniciar o sistema de wifi\n");
+        restart();
     }
 
     if (!FatFs::Init(4))
     {
-        printf("Nao foi possivel iniciar o sistema de arquivos fat\n");
+        ESP_LOGE("Main", "Nao foi possivel iniciar o sistema de arquivos fat\n");
+        restart();
     }
 
 	RFID rfid;
 	if (!rfid.Init(SPI2_HOST, 19, 23, 18, 2, 22))
 	{
-		printf("Não foi possível iniciar o sistema rfid.\n");
-
-		for (int i = 5; i >= 0; i--) 
-		{
-            printf("Reiniciando em %ds...\n", i);
-            vTaskDelay(1000 / portTICK_PERIOD_MS);
-        }
-
-        fflush(stdout);
-        esp_restart();
+		ESP_LOGE("Main", "Não foi possível iniciar o sistema rfid.\n");
+		restart();
 	}
 
     const gpio_num_t red_led = GPIO_NUM_5;

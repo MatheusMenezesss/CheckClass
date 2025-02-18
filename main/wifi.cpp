@@ -9,7 +9,7 @@
 
 EventGroupHandle_t WIFI::s_WifiEventGroup = nullptr;
 
-bool WIFI::Init(const char *ssid, const char *psswd, esp_event_handler_t handler)
+bool WIFI::Init(const char *ssid, const char *psswd)
 {
     int ssidLen = strlen(ssid), psswdLen = strlen(psswd);
     if (ssidLen >= 32 || psswdLen >= 64)
@@ -62,20 +62,22 @@ bool WIFI::Init(const char *ssid, const char *psswd, esp_event_handler_t handler
     ESP_ERROR_CHECK(esp_wifi_set_mode(WIFI_MODE_STA));
     // Setando a configuração wi-fi
     ESP_ERROR_CHECK(esp_wifi_set_config(WIFI_IF_STA, &sta_cfg));
+    
+    s_WifiEventGroup = xEventGroupCreate();
+
     // Rodando o wi-fi driver
     ESP_ERROR_CHECK(esp_wifi_start());
 
-    s_WifiEventGroup = xEventGroupCreate();
-
+    // Criando grupo de eventos
     EventBits_t bits = xEventGroupWaitBits(
         s_WifiEventGroup, 
         WIFI_CONNECTED_BIT | WIFI_FAIL_BIT,
         pdFALSE,
         pdFALSE,
-        pdMS_TO_TICKS(30000)
+        pdMS_TO_TICKS(30000) // Timeout de 30 segundos
     );
 
-    if (bits & WIFI_FAIL_BIT || (bits & WIFI_CONNECTED_BIT) == 0) 
+    if ((bits & WIFI_CONNECTED_BIT) == 0) 
     {
         ESP_LOGE(WIFI_TAG, "Falha ou Timeout na conexão!");
         return false;

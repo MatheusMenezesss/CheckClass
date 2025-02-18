@@ -19,6 +19,5 @@ private:
 
     static void Handler(void* arg, esp_event_base_t event_base, int32_t event_id, void* event_data);
 public:
-    static bool Init(const char *ssid, const char *psswd, esp_event_handler_t handler);
-    static bool IsConnected();
+    static bool Init(const char *ssid, const char *psswd);
 };
