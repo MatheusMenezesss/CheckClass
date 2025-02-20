@@ -41,7 +41,7 @@ extern "C" void app_main(void)
     }
 
 	RFID rfid;
-	if (!rfid.Init(SPI2_HOST, 19, 23, 18, 2, 22))
+	if (!rfid.Init(SPI2_HOST, 19, 23, 18, 2, 13))
 	{
 		ESP_LOGE("Main", "Não foi possível iniciar o sistema rfid.\n");
 		restart();
@@ -49,8 +49,8 @@ extern "C" void app_main(void)
 
     const gpio_num_t red_led = GPIO_NUM_5;
     const gpio_num_t green_led = GPIO_NUM_4;
-    const gpio_num_t buzzer = GPIO_NUM_21;
-
+    const gpio_num_t buzzer = GPIO_NUM_27;
+    
     gpio_set_direction(red_led, GPIO_MODE_OUTPUT);
     gpio_set_direction(green_led, GPIO_MODE_OUTPUT);
     gpio_set_direction(buzzer, GPIO_MODE_OUTPUT);
