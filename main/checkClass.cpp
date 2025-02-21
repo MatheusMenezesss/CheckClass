@@ -11,6 +11,8 @@
 
 #include "esp_log.h"
 
+#include "lcd.h"
+
 #define SSID "CINGUESTS"
 #define PASSWORD "acessocin"
 
@@ -46,6 +48,17 @@ extern "C" void app_main(void)
 		ESP_LOGE("Main", "Não foi possível iniciar o sistema rfid.\n");
 		restart();
 	}
+
+    LCD lcd;
+
+    if (!LCD::Init(100 * 1000, 22, 21))
+    {
+		ESP_LOGE("Main", "Não foi possível iniciar o sistema LCD.\n");
+		restart();
+    }
+
+    LCD::Clear();
+    LCD::String("Hello, World!");
 
     const gpio_num_t red_led = GPIO_NUM_5;
     const gpio_num_t green_led = GPIO_NUM_4;

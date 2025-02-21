@@ -1,6 +1,8 @@
 #pragma once
 
 #include <stdint.h>
+#include "driver/i2c_master.h"
+#include "driver/i2c.h"
 
 #define LCD_CLEARDISPLAY 0x01
 #define LCD_RETURNHOME 0x02
@@ -46,25 +48,29 @@
 
 #define LCD_DELAY_US 600
 
+#define LCD_TIMEOUT_MS 1000
+
 class LCD
 {
 private:
+    static i2c_master_bus_handle_t s_BusHandle;
+    static i2c_master_dev_handle_t s_DevHandle;
+
+    static void I2CWriteByte(uint8_t val);
 public:
-    bool Init(uint32_t baudrate, uint8_t scl, uint8_t sda);
-}
+    static bool Init(uint32_t baudrate, uint8_t scl, uint8_t sda);
 
-void lcd_toggle_enable(uint8_t val); 
+    static void ToggleEnable(uint8_t val); 
 
-// The display is sent a byte as two separate nibble transfers
-void lcd_send_byte(uint8_t val, int mode); 
+    // The display is sent a byte as two separate nibble transfers
+    static void SendByte(uint8_t val, int mode); 
 
-void lcd_init(); 
+    static void Clear(); 
 
-void lcd_clear(void); 
+    // go to location on LCD
+    static void SetCursor(int line, int position); 
 
-// go to location on LCD
-void lcd_set_cursor(int line, int position); 
+    static void Char(char val); 
 
-void lcd_char(char val); 
-
-void lcd_string(const char *s);
+    static void String(const char *s);
+};
