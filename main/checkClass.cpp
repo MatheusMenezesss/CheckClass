@@ -42,14 +42,11 @@ extern "C" void app_main(void)
         restart();
     }
 
-	RFID rfid;
-	if (!rfid.Init(SPI2_HOST, 19, 23, 18, 2, 13))
+	if (!RFID::Init(SPI2_HOST, 19, 23, 18, 2, 13))
 	{
 		ESP_LOGE("Main", "Não foi possível iniciar o sistema rfid.\n");
 		restart();
 	}
-
-    LCD lcd;
 
     if (!LCD::Init(100 * 1000, 22, 21))
     {
@@ -57,7 +54,6 @@ extern "C" void app_main(void)
 		restart();
     }
 
-    LCD::Clear();
     LCD::String("Hello, World!");
 
     const gpio_num_t red_led = GPIO_NUM_5;
@@ -102,10 +98,10 @@ extern "C" void app_main(void)
 
     while(1)
     {
-		if (rfid.IsNewCardPresent())
+		if (RFID::IsNewCardPresent())
 		{
 			Uid uid;
-			if (rfid.Select(&uid))
+			if (RFID::Select(&uid))
 			{
 				printf("Uid: ");
 				for(uint8_t i = 0; i < uid.size; i++)

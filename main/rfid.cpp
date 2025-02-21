@@ -1,5 +1,7 @@
 #include "rfid.h"
 
+spi_device_handle_t RFID::s_Handler;
+
 bool RFID::Init(spi_host_device_t host, uint8_t miso, uint8_t mosi, uint8_t clk, uint8_t cs, uint8_t rst)
 {
     spi_bus_config_t buscfg = {
@@ -19,11 +21,9 @@ bool RFID::Init(spi_host_device_t host, uint8_t miso, uint8_t mosi, uint8_t clk,
     
     // Initialize the SPI bus
     // Attach the RFID to the SPI bus
-    if (spi_bus_initialize(host, &buscfg, SPI_DMA_CH_AUTO) == ESP_OK && spi_bus_add_device(host, &devcfg, &m_Handler) == ESP_OK)
-    {
-        PCD_Init(m_Handler, miso, mosi, clk, cs, rst);
-        return true;
-    }
+    ESP_ERROR_CHECK(spi_bus_initialize(host, &buscfg, SPI_DMA_CH_AUTO));
+    ESP_ERROR_CHECK(spi_bus_add_device(host, &devcfg, &s_Handler));
+    PCD_Init(s_Handler, miso, mosi, clk, cs, rst);
 
-    return false;
+    return true;
 }

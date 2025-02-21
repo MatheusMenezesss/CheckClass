@@ -6,9 +6,9 @@
 class RFID
 {
 private:
-    spi_device_handle_t m_Handler;
+    static spi_device_handle_t s_Handler;
 public:
-    bool Init(spi_host_device_t host, uint8_t miso, uint8_t mosi, uint8_t clk, uint8_t cs, uint8_t rst);
-    bool IsNewCardPresent() { return PICC_IsNewCardPresent(m_Handler); }
-    bool Select(Uid* uid) { return PICC_Select(m_Handler, uid, 0) == STATUS_OK; };
+    static bool Init(spi_host_device_t host, uint8_t miso, uint8_t mosi, uint8_t clk, uint8_t cs, uint8_t rst);
+    static bool IsNewCardPresent() { return PICC_IsNewCardPresent(s_Handler); }
+    static bool Select(Uid* uid) { return PICC_Select(s_Handler, uid, 0) == STATUS_OK; };
 };

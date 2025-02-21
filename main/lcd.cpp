@@ -7,8 +7,8 @@ i2c_master_dev_handle_t LCD::s_DevHandle;
 /* Quick helper function for single byte transfers */
 void LCD::I2CWriteByte(uint8_t val)
 {
-    uint8_t buffer[2] = { LCD_ADDR, val };
-    i2c_master_transmit(s_DevHandle, buffer, sizeof(buffer), LCD_TIMEOUT_MS / portTICK_PERIOD_MS);
+    uint8_t buffer[1] = { val };
+    i2c_master_transmit(s_DevHandle, buffer, sizeof(val), LCD_TIMEOUT_MS / portTICK_PERIOD_MS);
 }
 
 bool LCD::Init(uint32_t baudrate, uint8_t scl, uint8_t sda)
