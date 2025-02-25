@@ -8,6 +8,7 @@
 #include "rfid.h"
 #include "fatfs.h"
 #include "wifi.h"
+#include "tcp_client.h"
 
 #include "esp_log.h"
 
@@ -34,6 +35,12 @@ extern "C" void app_main(void)
     {
         ESP_LOGE("Main", "Nao foi possivel iniciar o sistema de wifi\n");
         restart();
+    }
+
+    if (!TCPClient::Init("150.161.2.202", 8080))
+    {
+        ESP_LOGE("Main", "Nao foi possivel iniciar o sistema de cliente TCP\n");
+        //restart();
     }
 
     if (!FatFs::Init(4))
