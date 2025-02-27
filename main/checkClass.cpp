@@ -41,10 +41,10 @@ extern "C" void app_main(void)
         restart();
     }
 
-    if (!TCPClient::Init("150.161.2.202", 8080))
+    if (!TCPClient::Init("172.22.67.253", 8080))
     {
         ESP_LOGE("Main", "Nao foi possivel iniciar o sistema de cliente TCP\n");
-        //restart();
+        restart();
     }
 
     if (!FatFs::Init(4))
@@ -78,13 +78,18 @@ extern "C" void app_main(void)
     gpio_set_level(green_led, false);
     gpio_set_level(buzzer, false);
 
+    TCPClient::Send("request_db");
+
+    char buffer[1024];
+    TCPClient::Receive(buffer, 1024);
+
     FILE *f = fopen("/db/example.txt", "wb");
 
     if (f != nullptr)
     {
         printf("Foi possível abrir o arquivo\n");
 
-        fprintf(f, "Hello World!\n");
+        fprintf(f, "%s", buffer);
 
         fclose(f);
 
@@ -118,6 +123,7 @@ extern "C" void app_main(void)
             Uid uid;
             if (RFID::IsNewCardPresent() && RFID::Select(&uid))
             {
+                ESP_LOGI("Main", "Cartão detectado\n");
                 uint32_t uid_converted;
                 memcpy(&uid_converted, uid.uidByte, sizeof(uint32_t));
                 if (uid_converted == UID)

@@ -8,6 +8,10 @@
 class TCPClient
 {
 private:
+    static int s_Socket;
 public:
     static bool Init(const char *host_ip, uint16_t port);
+
+    static size_t Send(const char *message);
+    static size_t Receive(char *buffer, size_t size);
 };
