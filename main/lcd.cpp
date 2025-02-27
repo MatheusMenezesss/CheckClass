@@ -1,5 +1,6 @@
 #include "lcd.h"
 #include "esp_rom_sys.h"
+#include <stdarg.h>
 
 i2c_master_bus_handle_t LCD::s_BusHandle;
 i2c_master_dev_handle_t LCD::s_DevHandle;
@@ -93,4 +94,23 @@ void LCD::String(const char *s)
 {
     while (*s)
         Char(*s++);
+}
+
+void LCD::Stringf(const char *format, ...)
+{
+    va_list args;
+    va_start(args, format);
+
+    size_t size = vsnprintf(NULL, 0, format, args);
+    if (size > 0)
+    {
+        char *buffer = (char*)malloc(size + 1);
+        if (buffer != NULL)
+        {
+            vsnprintf(buffer, size + 1, format, args);
+            String(buffer);
+        }
+    }
+
+    va_end(args);
 }

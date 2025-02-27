@@ -73,4 +73,5 @@ public:
     static void Char(char val); 
 
     static void String(const char *s);
+    static void Stringf(const char *format, ...);
 };

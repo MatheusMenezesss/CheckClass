@@ -17,6 +17,10 @@
 #define SSID "CINGUESTS"
 #define PASSWORD "acessocin"
 
+#define UID 0xdfa7be4b
+
+enum class STATE { IDDLE, ONLINE_MODE, OFFLINE_MODE, ERROR_RECOVERY };
+
 void restart()
 {
     for (int i = 5; i >= 0; i--) 
@@ -61,7 +65,6 @@ extern "C" void app_main(void)
 		restart();
     }
 
-    LCD::String("Hello, World!");
 
     const gpio_num_t red_led = GPIO_NUM_5;
     const gpio_num_t green_led = GPIO_NUM_4;
@@ -71,7 +74,7 @@ extern "C" void app_main(void)
     gpio_set_direction(green_led, GPIO_MODE_OUTPUT);
     gpio_set_direction(buzzer, GPIO_MODE_OUTPUT);
 
-    gpio_set_level(red_led, true);
+    gpio_set_level(red_led, false);
     gpio_set_level(green_led, false);
     gpio_set_level(buzzer, false);
 
@@ -103,37 +106,75 @@ extern "C" void app_main(void)
 
     }
 
+    STATE current_state = STATE::IDDLE;
+    LCD::String("State: IDDLE");
+
     while(1)
     {
-		if (RFID::IsNewCardPresent())
-		{
-			Uid uid;
-			if (RFID::Select(&uid))
-			{
-				printf("Uid: ");
-				for(uint8_t i = 0; i < uid.size; i++)
-					printf("%02x ", uid.uidByte[i]);
-				printf("\n");
+        switch (current_state)
+        {
+        case STATE::IDDLE:
+        {
+            Uid uid;
+            if (RFID::IsNewCardPresent() && RFID::Select(&uid))
+            {
+                uint32_t uid_converted;
+                memcpy(&uid_converted, uid.uidByte, sizeof(uint32_t));
+                if (uid_converted == UID)
+                {
+                    LCD::Clear();
+                    LCD::String("State: ONLINE");
+                    current_state = STATE::ONLINE_MODE;
+                    gpio_set_level(red_led, true);
+                }
+                else
+                {
+                    LCD::SetCursor(2, 0);
+                    LCD::Stringf("UID: %08x", uid_converted);
+                }
+            }
+        }
+            break;
+        case STATE::ONLINE_MODE:
+            if (RFID::IsNewCardPresent())
+            {
+                Uid uid;
+                if (RFID::Select(&uid))
+                {
+                    printf("Uid: ");
+                    for(uint8_t i = 0; i < uid.size; i++)
+                        printf("%02x ", uid.uidByte[i]);
+                    printf("\n");
 
-				gpio_set_level(red_led, false);
-                gpio_set_level(green_led, true);
-                gpio_set_level(buzzer, true);
+                    gpio_set_level(red_led, false);
+                    gpio_set_level(green_led, true);
+                    gpio_set_level(buzzer, true);
 
-                vTaskDelay(400 / portTICK_PERIOD_MS);
+                    vTaskDelay(400 / portTICK_PERIOD_MS);
 
-                gpio_set_level(red_led, true);
-                gpio_set_level(green_led, false);
-                gpio_set_level(buzzer, false);
-			}
-			else
-			{
-				gpio_set_level(buzzer, true);
+                    gpio_set_level(red_led, true);
+                    gpio_set_level(green_led, false);
+                    gpio_set_level(buzzer, false);
+                }
+                else
+                {
+                    gpio_set_level(buzzer, true);
 
-                vTaskDelay(700 / portTICK_PERIOD_MS);
+                    vTaskDelay(700 / portTICK_PERIOD_MS);
 
-                gpio_set_level(buzzer, false);
-			}
-		}
+                    gpio_set_level(buzzer, false);
+                }
+            }
+            break;
+        case STATE::OFFLINE_MODE:
+            break;
+        case STATE::ERROR_RECOVERY:
+            break;
+        default:
+            ESP_LOGE("Main", "Esp entrou em um estado não reconhecido\n");
+            restart();
+            break;
+        }
 
     	vTaskDelay(500 / portTICK_PERIOD_MS);
     }
