@@ -6,9 +6,9 @@
 #include "freertos/event_groups.h"
 
 #include "rfid.h"
-#include "fatfs.h"
 #include "wifi.h"
 #include "tcp_client.h"
+#include "db.h"
 
 #include "esp_log.h"
 
@@ -47,9 +47,9 @@ extern "C" void app_main(void)
         restart();
     }
 
-    if (!FatFs::Init(4))
+    if (!DB::Init(4))
     {
-        ESP_LOGE("Main", "Nao foi possivel iniciar o sistema de arquivos fat\n");
+        ESP_LOGE("Main", "Nao foi possivel iniciar o sistema de banco de dados\n");
         restart();
     }
 
@@ -64,7 +64,6 @@ extern "C" void app_main(void)
 		ESP_LOGE("Main", "Não foi possível iniciar o sistema LCD.\n");
 		restart();
     }
-
 
     const gpio_num_t red_led = GPIO_NUM_5;
     const gpio_num_t green_led = GPIO_NUM_4;
@@ -82,7 +81,7 @@ extern "C" void app_main(void)
 
     char buffer[1024];
     TCPClient::Receive(buffer, 1024);
-
+    
     FILE *f = fopen("/db/example.txt", "wb");
 
     if (f != nullptr)
