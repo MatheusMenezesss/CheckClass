@@ -2,6 +2,8 @@
 #include "esp_log.h"
 
 int TCPClient::s_Socket = 0;
+fd_set TCPClient::s_ReadFds = {0}, TCPClient::s_WriteFds = {0};
+struct timeval TCPClient::s_Timeout = (struct timeval){5, 0};
 
 bool TCPClient::Init(const char *host_ip, uint16_t port)
 {
@@ -34,13 +36,8 @@ bool TCPClient::Init(const char *host_ip, uint16_t port)
     FD_SET(s_Socket, &s_WriteFds);
     FD_SET(s_Socket, &s_ReadFds);
 
-    // Define o timeout (ex: 10 segundos)
-    struct timeval timeout;
-    timeout.tv_sec = 10; // Altere este valor para o tempo desejado
-    timeout.tv_usec = 0;
-
     // Aguarda até que o socket esteja pronto para escrita (conexão concluída)
-    err = select(s_Socket + 1, &s_ReadFds, &s_WriteFds, NULL, &timeout);
+    err = select(s_Socket + 1, &s_ReadFds, &s_WriteFds, NULL, &s_Timeout);
 
     if (err == 0)
     {
@@ -74,10 +71,42 @@ bool TCPClient::Init(const char *host_ip, uint16_t port)
 
 size_t TCPClient::Send(const char *message)
 {
+    FD_ZERO(&s_ReadFds);
+    FD_SET(s_Socket, &s_ReadFds);
+
+    int err = select(s_Socket + 1, &s_ReadFds, NULL, NULL, &s_Timeout);
+
+    if (err == 0)
+    {
+        ESP_LOGE("TCP", "Timeout de envio\n");
+        return 0;
+    }
+    else if (err < 0)
+    {
+        ESP_LOGE("TCP", "Erro no select do envio\n");
+        return 0;
+    }
+
     return send(s_Socket, message, strlen(message), 0);
 }
 
 size_t TCPClient::Receive(char *buffer, size_t size)
 {
+    FD_ZERO(&s_WriteFds);
+    FD_SET(s_Socket, &s_WriteFds);
+
+    int err = select(s_Socket + 1, NULL, &s_WriteFds, NULL, &s_Timeout);
+
+    if (err == 0)
+    {
+        ESP_LOGE("TCP", "Timeout de leitura\n");
+        return 0;
+    }
+    else if (err < 0)
+    {
+        ESP_LOGE("TCP", "Erro no select de leitura\n");
+        return 0;
+    }
+
     return read(s_Socket, buffer, size);
 }

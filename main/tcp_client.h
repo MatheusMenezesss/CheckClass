@@ -10,6 +10,7 @@ class TCPClient
 private:
     static int s_Socket;
     static fd_set s_ReadFds, s_WriteFds;
+    static struct timeval s_Timeout;
 public:
     static bool Init(const char *host_ip, uint16_t port);
 
