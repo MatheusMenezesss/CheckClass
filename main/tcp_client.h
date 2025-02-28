@@ -9,6 +9,7 @@ class TCPClient
 {
 private:
     static int s_Socket;
+    static fd_set s_ReadFds, s_WriteFds;
 public:
     static bool Init(const char *host_ip, uint16_t port);
 
