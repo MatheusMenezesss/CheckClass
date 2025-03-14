@@ -1,8 +1,8 @@
 #include "db.h"
 #include "fatfs.h"
+#include <string>
 
 bool DB::s_HasFiles = false;
-
 bool DB::Init(int maxFiles)
 {
     if (!FatFs::Init(s_DBStoragePath, maxFiles))
@@ -10,8 +10,9 @@ bool DB::Init(int maxFiles)
         ESP_LOGE("DB", "Nao foi possivel iniciar o sistema de arquivos\n");
         return false;
     }
-
-    if (FatFs::FileExists(s_DBStoragePath "/tables_descriptor.txt"))
+    
+    std::string concat = s_DBStoragePath + std::string("/tables_descriptor.txt");
+    if (FatFs::FileExists(concat.c_str()))
     {
         s_HasFiles = true;
         return LoadTables();

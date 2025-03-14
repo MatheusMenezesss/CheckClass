@@ -4,20 +4,25 @@
 #include "freertos/FreeRTOS.h"
 #include "freertos/task.h"
 #include "freertos/event_groups.h"
+#include "esp_timer.h"
+#include "esp_log.h"
 
 #include "rfid.h"
 #include "wifi.h"
 #include "tcp_client.h"
 #include "db.h"
 
-#include "esp_log.h"
-
 #include "lcd.h"
+
+#include <string>
 
 #define SSID "CINGUESTS"
 #define PASSWORD "acessocin"
 
 #define UID 0xdfa7be4b
+
+std::string display_err_msg;
+uint32_t display_err_msg_idx = 0;
 
 enum class STATE { IDDLE, ONLINE_MODE, OFFLINE_MODE, ERROR_RECOVERY };
 
@@ -31,6 +36,35 @@ void restart()
 
     fflush(stdout);
     esp_restart();
+}
+
+void accept_request(const gpio_num_t red_led, const gpio_num_t green_led, const gpio_num_t buzzer)
+{
+    gpio_set_level(red_led, false);
+    gpio_set_level(green_led, true);
+    gpio_set_level(buzzer, true);
+
+    vTaskDelay(400 / portTICK_PERIOD_MS);
+
+    gpio_set_level(red_led, true);
+    gpio_set_level(green_led, false);
+    gpio_set_level(buzzer, false);
+}
+
+void reject_request(const gpio_num_t buzzer)
+{
+    gpio_set_level(buzzer, true);
+
+    vTaskDelay(700 / portTICK_PERIOD_MS);
+
+    gpio_set_level(buzzer, false);
+}
+
+void display_err(const char *emsg)
+{
+    LCD::SetCursor(2, 0);
+    LCD::Stringf(emsg);
+    vTaskDelay(1000 / portTICK_PERIOD_MS);
 }
 
 extern "C" void app_main(void)
@@ -113,8 +147,32 @@ extern "C" void app_main(void)
     STATE current_state = STATE::IDDLE;
     LCD::String("State: IDDLE");
 
+    int64_t start = esp_timer_get_time();
+    LCD::SetCursor(2, 0);
+    display_err_msg = "STRING GRANDE PARA TESTE";
+    LCD::String(display_err_msg.c_str());
+    int64_t accum = 0;
+
+    bool update_idx_msg = false;
+
     while(1)
     {
+        int64_t end = esp_timer_get_time();
+        int64_t delta_time = (end - start) / 1000.f;
+        start = end;
+
+        if (update_idx_msg && accum > 500)
+        {
+            display_err_msg_idx = (display_err_msg_idx + 1) % display_err_msg.size();
+            LCD::String(display_err_msg.c_str() + display_err_msg_idx);
+
+            if (display_err_msg_idx == 0)
+                update_idx_msg = false;
+        }
+        else if (accum > 1000)
+                update_idx_msg = true;
+
+        /*
         switch (current_state)
         {
         case STATE::IDDLE:
@@ -143,35 +201,41 @@ extern "C" void app_main(void)
         case STATE::ONLINE_MODE:
             if (RFID::IsNewCardPresent())
             {
-                Uid uid;
-                if (RFID::Select(&uid))
+                Uid alunoUid;
+                if (RFID::Select(&aluno_uid))
                 {
-                    printf("Uid: ");
-                    for(uint8_t i = 0; i < uid.size; i++)
-                        printf("%02x ", uid.uidByte[i]);
-                    printf("\n");
+                    LCD::Clear();
+                    LCD::String("State: ONLINE");
 
-                    gpio_set_level(red_led, false);
-                    gpio_set_level(green_led, true);
-                    gpio_set_level(buzzer, true);
+                    if (!TCPClient::SendUID(&aluno_uid))
+                    {
+                        reject_request(buzzer);
 
-                    vTaskDelay(400 / portTICK_PERIOD_MS);
-
-                    gpio_set_level(red_led, true);
-                    gpio_set_level(green_led, false);
-                    gpio_set_level(buzzer, false);
+                        uint32_t err = TCPClient::GetErrorCode();
+                        if (err != 0)
+                        {
+                            display_err("SERVER TIMEOUT");
+                            LCD::Clear();
+                            LCD::String("State: OFFLINE");
+                            current_state = STATE::OFFLINE_MODE;
+                        }
+                        else
+                            display_err("NAO CADASTRADO");
+                    }
+                    else
+                        accept_request(red_led, green_led, buzzer);
                 }
                 else
                 {
-                    gpio_set_level(buzzer, true);
-
-                    vTaskDelay(700 / portTICK_PERIOD_MS);
-
-                    gpio_set_level(buzzer, false);
+                    reject_request(buzzer);
+                    display_err("REAPROXIMAR CARTAO");
                 }
             }
             break;
         case STATE::OFFLINE_MODE:
+        {
+
+        }
             break;
         case STATE::ERROR_RECOVERY:
             break;
@@ -180,6 +244,7 @@ extern "C" void app_main(void)
             restart();
             break;
         }
+        */
 
     	vTaskDelay(500 / portTICK_PERIOD_MS);
     }
