@@ -23,6 +23,7 @@
 
 std::string display_err_msg;
 uint32_t display_err_msg_idx = 0;
+bool update_idx_msg = false;
 
 enum class STATE { IDDLE, ONLINE_MODE, OFFLINE_MODE, ERROR_RECOVERY };
 
@@ -67,6 +68,31 @@ void display_err(const char *emsg)
     vTaskDelay(1000 / portTICK_PERIOD_MS);
 }
 
+void display_animate_err(int64_t &accum)
+{
+    if (update_idx_msg && accum > 500)
+    {
+        display_err_msg_idx = (display_err_msg_idx + 1) % (display_err_msg.size() - 15);
+        if (display_err_msg_idx == 0)
+            update_idx_msg = false;
+
+        LCD::SetCursor(2, 0);
+        LCD::String("                ");
+        LCD::SetCursor(2, 0);
+        LCD::String(display_err_msg.c_str() + display_err_msg_idx);
+
+        if (display_err_msg_idx == (display_err_msg.size() - 16))
+            accum = 0;
+
+        accum -= 500;
+    }
+    else if (accum > 1000)
+    {
+        update_idx_msg = true;
+        accum -= 1000;
+    }
+}
+
 extern "C" void app_main(void)
 {
     if (!WIFI::Init(SSID, PASSWORD))
@@ -75,11 +101,13 @@ extern "C" void app_main(void)
         restart();
     }
 
+    /*
     if (!TCPClient::Init("172.22.67.253", 8080))
     {
         ESP_LOGE("Main", "Nao foi possivel iniciar o sistema de cliente TCP\n");
         restart();
     }
+    */
 
     if (!DB::Init(4))
     {
@@ -111,6 +139,7 @@ extern "C" void app_main(void)
     gpio_set_level(green_led, false);
     gpio_set_level(buzzer, false);
 
+    /*
     TCPClient::Send("request_db");
 
     char buffer[1024];
@@ -143,6 +172,7 @@ extern "C" void app_main(void)
         }
 
     }
+    */
 
     STATE current_state = STATE::IDDLE;
     LCD::String("State: IDDLE");
@@ -160,17 +190,8 @@ extern "C" void app_main(void)
         int64_t end = esp_timer_get_time();
         int64_t delta_time = (end - start) / 1000.f;
         start = end;
-
-        if (update_idx_msg && accum > 500)
-        {
-            display_err_msg_idx = (display_err_msg_idx + 1) % display_err_msg.size();
-            LCD::String(display_err_msg.c_str() + display_err_msg_idx);
-
-            if (display_err_msg_idx == 0)
-                update_idx_msg = false;
-        }
-        else if (accum > 1000)
-                update_idx_msg = true;
+        accum += delta_time;
+        display_animate_err(accum);
 
         /*
         switch (current_state)
